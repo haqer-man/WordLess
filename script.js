@@ -44,39 +44,25 @@ function checkLetters(guess,word) {
 		for (let i in guess) {
 			document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#24c662";
 		}
-		void (window.canContinue = false);
 	} else {
 		var curr = document.getElementsByClassName('selected-row');
-		for (let i in guess) {
+		for (let i = guess.length - 1; i >= 0; i--) {
 			if (guess[i].toLowerCase() === word[i]) {
-				curr.item(i).className += ' green-letter';
+				curr.item(i).className = 'box green-letter';
 			} else if (word.toLowerCase().includes(guess[i].toLowerCase())) {
-				curr.item(i).className += ' yellow-letter';
+				curr.item(i).className = 'box yellow-letter';
 			} else {
-				curr.item(i).className += ' red-letter';
+				curr.item(i).className = 'box red-letter';
 			}
-			/*if (guess[i].toLowerCase() === word[i].toLowerCase()) {
-				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#24c662";
-			} else if (word.toLowerCase().includes(guess[i].toLowerCase())) {
-				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#c9b63b";
-			} else {
-				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#bc3441";
-			}*/
+		}
+		
+		var next = window.newRow.next().value;
+		console.log(next, currRow);
+		document.getElementById(next + 1).className = 'box selected-row selected';
+		for (let i = 2; i <= 4; i++) {
+			document.getElementById(`${next}${i}`).className = 'box selected-row';
 		}
 	}
-}
-
-function nextRow() {
-	// Takes the first character (index 0) of the id of the first item (.item(0)) with a class name of 'box selected-row'
-	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
-	var next = window.newRow.next().value;
-	console.log(next, currRow);
-	for (let i = 1; i <= 4; i++) {
-		document.getElementById(`${currRow}${i}`).className = document.getElementById(`${currRow}${i}`).className.replace(/(s.*\b )/,'');
-		document.getElementById(`${next}${i}`).className = 'box selected-row';
-		document.getElementById(`${currRow}${i}`).className = 'box';
-	}
-	document.getElementById(`${next}1`).className = 'box selected-row selected';
 }
 
 function type(ltr) {
@@ -106,11 +92,7 @@ function enter(word){
 	var currRow = currLtr.id.split('')[0];
 	if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) {
 		var currRow = currLtr.id.split('')[0];
-		checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word)
-		if (window.canContinue) {
-			// nextRow() function
-			
-		}
+		checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word);	
 	}
 }
 
@@ -134,7 +116,6 @@ function clearScreen() {
 function newGame() {
 	clearScreen();
 	window.newRow = rowNums('b');
-	window.canContinue = true;
 	var word = words[Math.floor(Math.random() * words.length)];
 	console.log(word);
 	
@@ -207,3 +188,4 @@ newGame();
 // set up keyboard that will show colors that have been provided
 // set up check if guess is a word
 // fix new game button
+// make the site scroll to the bottom on success
