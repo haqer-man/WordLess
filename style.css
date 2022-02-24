@@ -1,0 +1,117 @@
+body {
+	font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+	background-color: #0e0b0b;
+}
+
+/*Some styling from https://github.com/ocrebb776/wordle-recreate/blob/main/wide.css*/
+
+.heading-center {
+	text-align: center;
+	height: 6.2vh;
+	font-size: 5vh;
+	color: white;
+	border-bottom: 0.1vw solid #4f4f52;
+	letter-spacing: 0.6vw;
+	width: 60vw;
+	top: 0;
+	float: top;
+	margin-left: 20vw;
+	margin-right: 20vw;
+	position: absolute;
+}
+
+.subheading {
+	text-align: center;
+	height: 20vh;
+	font-size: 2.5vh;
+	color: white;
+	border-bottom: 0.1vw solid #4f4f52;
+	letter-spacing: 0.1vw;
+	width: 60vw;
+	float: top;
+	margin-top: 8vh;
+	margin-left: 21.25vw;
+	margin-right: 21.25vw;
+	position: static;
+}
+
+.playspace-table-center {
+	color: white;
+	text-align: center;
+	margin-top: 7vh;
+}
+
+.box {
+	max-width: 6vh;
+	max-height: 6vh;
+	min-width: 7vh;
+	min-height: 7vh;
+	border: 0.25vh solid #4f4f52;
+	margin: 0.6vh;
+	font-size: 5vh;
+	background-color: #3a3a3b;
+	position: static;
+	color: white;
+	margin-left: auto;
+	margin-bottom: auto;
+	text-align: center;
+	text-transform: capitalize;
+	display: block;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.selected-row {
+	background-color: #737373;
+}
+
+.selected {
+	background-color: #bcaeae;
+}
+
+.red {
+	color: #bc3441;
+}
+
+.yellow {
+	color: #c9b63b;
+}
+
+.green {
+	color: #24c662;
+}
+
+.red-letter {
+	background-color: #bc3441;
+}
+
+.yellow-letter {
+	background-color: #c9b63b;
+}
+
+.green-letter {
+	background-color: #24c662;
+}
+
+.output {
+	text-align: center;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.new-game {
+	text-align: center;
+	background-color: #736868;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 12vw;
+	max-height: 7vh;
+	min-width: 9vw;
+	min-height: 6vh;
+	border: 0.5vh dashed #4f4f52;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<!-- Inspiration taken from https://github.com/ocrebb776/wordle-recreate -->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Wordless</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="heading-center">
+			Word<b>less</b>
+		</div>
+		<div class="subheading">
+			Guess the 4-letter word in 8 attempts or less!<br>
+			<b>Type a 4-letter word, then hit enter to begin!</b><br>
+			<span class="green">Green</span> - Letter is part of target word and is in the correct position.<br>
+			<span class="yellow">Yellow</span> - Letter part of target word, but in wrong position.<br>
+			<span class="red">Red</span> - Letter not part of target word.
+		</div>
+		<div class="playspace-table-center">
+			<b>
+			<table>
+				<tr>
+					<th><button class="box selected-row selected" id="a1"></button></th>
+					<th><button class="box selected-row" id="a2"></button></th>
+					<th><button class="box selected-row" id="a3"></button></th>
+					<th><button class="box selected-row" id="a4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="b1"></button></th>
+					<th><button class="box" id="b2"></button></th>
+					<th><button class="box" id="b3"></button></th>
+					<th><button class="box" id="b4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="c1"></button></th>
+					<th><button class="box" id="c2"></button></th>
+					<th><button class="box" id="c3"></button></th>
+					<th><button class="box" id="c4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="d1"></button></th>
+					<th><button class="box" id="d2"></button></th>
+					<th><button class="box" id="d3"></button></th>
+					<th><button class="box" id="d4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="e1"></button></th>
+					<th><button class="box" id="e2"></button></th>
+					<th><button class="box" id="e3"></button></th>
+					<th><button class="box" id="e4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="f1"></button></th>
+					<th><button class="box" id="f2"></button></th>
+					<th><button class="box" id="f3"></button></th>
+					<th><button class="box" id="f4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="g1"></button></th>
+					<th><button class="box" id="g2"></button></th>
+					<th><button class="box" id="g3"></button></th>
+					<th><button class="box" id="g4"></button></th>
+				</tr>
+				<tr>
+					<th><button class="box" id="h1"></button></th>
+					<th><button class="box" id="h2"></button></th>
+					<th><button class="box" id="h3"></button></th>
+					<th><button class="box" id="h4"></button></th>
+				</tr>
+			</table>
+			</b>
+		</div>
+		<br>
+		<div class="output">
+			<p id="output"> </p>
+		</div>
+		<div class="new-game">
+			<button onClick="newGame()">New Game</button>
+		</div>
+		<script src="words.txt.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
