@@ -58,7 +58,9 @@ function checkLetters(guess,word) {
 }
 function type(ltr) {
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0);
-	!currLtr.innerHTML ? currLtr.innerHTML = ltr : null;
+	if (!currLtr.innerHTML) {
+		currLtr.innerHTML = ltr;
+	}
 	void currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
 }
 
@@ -85,19 +87,26 @@ function enter(word){
 		void (window.canContinue ? nextRow() : null);
 	}
 }
-function newGame() {
-	
+
+function clearScreen() {
 	const clear = allBoxes();
-	for (let i = 0; i < 32; i++) {
+	let a = clear.next().value;
+	console.log(document.getElementById(a).className)
+	document.getElementById(a)
+	for (let i = 1; i < 4; i++) {
 		var b = clear.next().value;
-		document.getElementById(b).className = "box"
+		//document.getElementById(b).className = 'box selected-row';
 		document.getElementById(b).innerHTML = '';
 	}
-	document.getElementById('a1').className = 'box selected-row selected';
-	for (let i = 0; i < 4; i++) {
-		document.getElementById(`a${i}`).className = 'box selected-row';
+	for (let i = 0; i < 32; i++) {
+		var c = clear.next().value;
+		//document.getElementById(c).className = "box";
+		document.getElementById(b).innerHTML = '';
 	}
-	
+}
+
+function newGame() {
+	//clearScreen();
 	window.newRow = rowNums('b');
 	window.canContinue = true;
 	var word = words[Math.floor(Math.random() * words.length)];
@@ -172,4 +181,3 @@ newGame();
 // set up keyboard that will show colors that have been provided
 // set up check if guess is a word
 // fix new game button
-// Make newGame() function clear screen
