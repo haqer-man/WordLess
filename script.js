@@ -21,6 +21,7 @@ function nextRow() {
 	var next = window.newRow.next().value;
 	console.log(next, currRow);
 	for (let i = 1; i <= 4; i++) {
+		document.getElementById(`${currRow}${i}`).className = document.getElementById(`${currRow}${i}`).className.replace(/(s.*\b )/,'');
 		document.getElementById(`${next}${i}`).className = 'box selected-row';
 		document.getElementById(`${currRow}${i}`).className = 'box';
 	}
@@ -45,17 +46,39 @@ function checkLetters(guess,word) {
 		}
 		void (window.canContinue = false);
 	} else {
+		var curr = document.getElementsByClassName('selected-row');
 		for (let i in guess) {
-			if (guess[i].toLowerCase() === word[i].toLowerCase()) {
+			if (guess[i].toLowerCase() === word[i]) {
+				curr.item(i).className += ' green-letter';
+			} else if (word.toLowerCase().includes(guess[i].toLowerCase())) {
+				curr.item(i).className += ' yellow-letter';
+			} else {
+				curr.item(i).className += ' red-letter';
+			}
+			/*if (guess[i].toLowerCase() === word[i].toLowerCase()) {
 				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#24c662";
 			} else if (word.toLowerCase().includes(guess[i].toLowerCase())) {
 				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#c9b63b";
 			} else {
 				document.getElementsByClassName('box selected-row').item(i).style.backgroundColor = "#bc3441";
-			}
+			}*/
 		}
 	}
 }
+
+function nextRow() {
+	// Takes the first character (index 0) of the id of the first item (.item(0)) with a class name of 'box selected-row'
+	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
+	var next = window.newRow.next().value;
+	console.log(next, currRow);
+	for (let i = 1; i <= 4; i++) {
+		document.getElementById(`${currRow}${i}`).className = document.getElementById(`${currRow}${i}`).className.replace(/(s.*\b )/,'');
+		document.getElementById(`${next}${i}`).className = 'box selected-row';
+		document.getElementById(`${currRow}${i}`).className = 'box';
+	}
+	document.getElementById(`${next}1`).className = 'box selected-row selected';
+}
+
 function type(ltr) {
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0);
 	if (!currLtr.innerHTML) {
@@ -84,29 +107,32 @@ function enter(word){
 	if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) {
 		var currRow = currLtr.id.split('')[0];
 		checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word)
-		void (window.canContinue ? nextRow() : null);
+		if (window.canContinue) {
+			// nextRow() function
+			
+		}
 	}
 }
 
 function clearScreen() {
 	const clear = allBoxes();
-	let a = clear.next().value;
-	console.log(document.getElementById(a).className)
-	document.getElementById(a)
+	var b = clear.next().value;
+	document.getElementById(b).innerHTML = '';
+	document.getElementById(b).className = 'box selected-row selected';
 	for (let i = 1; i < 4; i++) {
-		var b = clear.next().value;
-		//document.getElementById(b).className = 'box selected-row';
+		b = clear.next().value;
 		document.getElementById(b).innerHTML = '';
+		document.getElementById(b).className = 'box selected-row';
 	}
-	for (let i = 0; i < 32; i++) {
-		var c = clear.next().value;
-		//document.getElementById(c).className = "box";
+	for (let i = 4; i < 32; i++) {
+		b = clear.next().value;
 		document.getElementById(b).innerHTML = '';
+		document.getElementById(b).className = "box";
 	}
 }
 
 function newGame() {
-	//clearScreen();
+	clearScreen();
 	window.newRow = rowNums('b');
 	window.canContinue = true;
 	var word = words[Math.floor(Math.random() * words.length)];
