@@ -14,20 +14,6 @@ function* allBoxes() {
 	}
 }
 
-
-function nextRow() {
-	// Takes the first character (index 0) of the id of the first item (.item(0)) with a class name of 'box selected-row'
-	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
-	var next = window.newRow.next().value;
-	console.log(next, currRow);
-	for (let i = 1; i <= 4; i++) {
-		document.getElementById(`${currRow}${i}`).className = document.getElementById(`${currRow}${i}`).className.replace(/(s.*\b )/,'');
-		document.getElementById(`${next}${i}`).className = 'box selected-row';
-		document.getElementById(`${currRow}${i}`).className = 'box';
-	}
-	document.getElementById(`${next}1`).className = 'box selected-row selected';
-}
-
 function nextLetter() {
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0).id;
 
@@ -111,6 +97,7 @@ function clearScreen() {
 		document.getElementById(b).innerHTML = '';
 		document.getElementById(b).className = "box";
 	}
+	document.getElementById('output').innerHTML = '';
 }
 
 function newGame() {
