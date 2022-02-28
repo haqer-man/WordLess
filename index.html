@@ -76,11 +76,47 @@
 		</div>
 		<br>
 		<div class="output">
-			<p id="output"> </p>
+			<p id="output"></p>
 		</div>
-		<div class="new-game">
-			<button onClick="newGame()">New Game</button>
+		<div class="keyboard-table">
+			<table>
+				<tr>
+					<th><button id="q" class="keyboard" onclick="type('Q')">Q</button></th>
+					<th><button id="w" class="keyboard" onclick="type('W')">W</button></th>
+					<th><button id="e" class="keyboard" onclick="type('E')">E</button></th>
+					<th><button id="r" class="keyboard" onclick="type('R')">R</button></th>
+					<th><button id="t" class="keyboard" onclick="type('T')">T</button></th>
+					<th><button id="y" class="keyboard" onclick="type('Y')">Y</button></th>
+					<th><button id="u" class="keyboard" onclick="type('U')">U</button></th>
+					<th><button id="i" class="keyboard" onclick="type('I')">I</button></th>
+					<th><button id="o" class="keyboard" onclick="type('O')">O</button></th>
+					<th><button id="p" class="keyboard" onclick="type('P')">P</button></th>
+					<th><button id="backspace" class="keyboard" onclick="back()">Back</button></th>
+				</tr>
+				<tr>
+					<th><button id="a" class="keyboard" onclick="type('A')">A</button></th>
+					<th><button id="s" class="keyboard" onclick="type('S')">S</button></th>
+					<th><button id="d" class="keyboard" onclick="type('D')">D</button></th>
+					<th><button id="f" class="keyboard" onclick="type('F')">F</button></th>
+					<th><button id="g" class="keyboard" onclick="type('G')">G</button></th>
+					<th><button id="h" class="keyboard" onclick="type('H')">H</button></th>
+					<th><button id="j" class="keyboard" onclick="type('J')">J</button></th>
+					<th><button id="k" class="keyboard" onclick="type('K')">K</button></th>
+					<th><button id="l" class="keyboard" onclick="type('L')">L</button></th>
+				</tr>
+				<tr>
+					<th><button id="z" class="keyboard" onclick="type('Z')">Z</button></th>
+					<th><button id="x" class="keyboard" onclick="type('X')">X</button></th>
+					<th><button id="c" class="keyboard" onclick="type('C')">C</button></th>
+					<th><button id="v" class="keyboard" onclick="type('V')">V</button></th>
+					<th><button id="b" class="keyboard" onclick="type('B')">B</button></th>
+					<th><button id="n" class="keyboard" onclick="type('N')">N</button></th>
+					<th><button id="m" class="keyboard" onclick="type('M')">M</button></th>
+					<th><button id="enter" class="keyboard" onclick="enter(word)">Enter</button></th>
+				</tr>
+			</table>
 		</div>
+		<button class='new-game' onClick="newGame()">New Game</button>
 		<script src="words.txt.js"></script>
 		<script src="script.js"></script>
 	</body>

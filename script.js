@@ -24,27 +24,48 @@ function nextLetter() {
 }
 
 function checkLetters(guess,word) {
-	console.log("word in checkLetters: " + word)
+	if (!words.includes(guess)) {
+		var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
+		for (let i = 3; i >= 0; i--) {
+			document.getElementsByClassName('box selected-row').item(i).className = 'box selected-row blink';
+		}
+		document.getElementById(selected).className = 'box selected-row selected blink';
+		setTimeout(function () {
+			var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
+			for (let i = 3; i >= 0; i--) {
+				document.getElementsByClassName('box selected-row').item(i).className = 'box selected-row';
+			}
+			document.getElementById(selected).className = 'box selected-row selected';
+		}, 1000);
+		return null;
+	}
 	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
 	if (guess.toLowerCase() === word) {
-		document.getElementById('output').innerHTML = `Congratulations! You got it in ${['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1} tries! Click the "New Game" button to play again!`;
+		window.scrollTo(0,document.body.scrollHeight);
+		document.getElementById('output').innerHTML = `Congratulations! You got it in ${['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1} tries! Click the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
+			document.getElementById(guess[i]).className = 'keyboard green-letter';
 		}
 	} else if (guess.toLowerCase() !== word && currRow === 'h') {
-		document.getElementById('output').innerHTML = `Sorry! The word was ${word}. Press the "New Game" button to play again!`;
+		window.scrollTo(0,document.body.scrollHeight);
+		document.getElementById('output').innerHTML = `Sorry! The word was <b>${word}</b>. Press the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box red-letter';
+			document.getElementById(guess[i]).className = 'keyboard red-letter';
 		}
 	} else {
 		var curr = document.getElementsByClassName('selected-row');
 		for (let i = 3; i >= 0; i--) {
 			if (guess[i].toLowerCase() === word[i]) {
 				curr.item(i).className = 'box green-letter';
+				document.getElementById(guess[i]).className = 'keyboard green-letter';
 			} else if (word.includes(guess[i].toLowerCase())) {
 				curr.item(i).className = 'box yellow-letter';
+				document.getElementById(guess[i]).className = 'keyboard yellow-letter';
 			} else {
 				curr.item(i).className = 'box red-letter';
+				document.getElementById(guess[i]).className = 'keyboard red-letter';
 			}
 		}
 		
@@ -65,7 +86,7 @@ function type(ltr) {
 		if (!currLtr.innerHTML) {
 			currLtr.innerHTML = ltr;
 		}
-		void currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
+		return void currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
 	}
 }
 
@@ -84,13 +105,12 @@ function back() {
 }
 
 function enter(word){
-	console.log("word in enter(): " + word)
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0);
 	if (currLtr !== null) {
 		var currRow = currLtr.id.split('')[0];
 		if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) {
 			var currRow = currLtr.id.split('')[0];
-			checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word);	
+			checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word);
 		}
 	}
 }
@@ -114,6 +134,8 @@ function clearScreen() {
 }
 
 function newGame() {
+	console.log(window.scrollY)
+	window.scrollTo(0,0);
 	clearScreen();
 	window.newRow = rowNums('b');
 	window.word = words[Math.floor(Math.random() * words.length)];
@@ -186,7 +208,6 @@ function newGame() {
 newGame();
 
 // set up keyboard that will show colors that have been provided
-// set up check if guess is a word
-// fix new game button
 // make the site scroll to the bottom on success or fail
+// fix centering issue
 // DESCRIBE WHAT FUNCTIONS DO (comments)

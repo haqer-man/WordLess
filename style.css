@@ -64,6 +64,31 @@ table {
 	margin-right: auto;
 }
 
+.keyboard {
+	max-width: 6vh;
+	max-height: 6vh;
+	min-width: 7vh;
+	min-height: 7vh;
+	border: 0.25vh solid #4f4f52;
+	margin: 0.6vh;
+	font-size: 5vh;
+	background-color: #3a3a3b;
+	position: static;
+	color: white;
+	margin-left: auto;
+	margin-bottom: auto;
+	text-align: center;
+	text-transform: capitalize;
+	display: block;
+}
+
+.keyboard-table {
+	margin-right: auto;
+	margin-left: auto;
+	justify-items: center;
+	align-items: center;
+}
+
 .selected-row {
 	background-color: #737373;
 }
@@ -105,13 +130,31 @@ table {
 
 .new-game {
 	text-align: center;
-	background-color: #736868;
-	color: white;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 12vw;
-	max-height: 7vh;
-	min-width: 9vw;
-	min-height: 6vh;
-	border: 0.5vh dashed #4f4f52;
+	height: 5vh;
+	width: 14vw;
+	background-color: #4a4c54;
+	color: #e3e3ed;
+	margin-left: 42vw;
+	margin-right: 42vw;
+	font-size: 3vh;
+	border: 0.5vh dashed #e3e3ed;
+	position: static;
+	transition-duration: 0.4s;
+}
+
+.new-game:hover {
+	color: #4a4c54;
+	background-color: #bdbdc7;
+	border: 0.5vh dashed #4a4c54;
+	cursor: pointer;
+}
+
+.blink {
+	animation: blinker 0.5s ease-in-out 2;
+}
+
+@keyframes blinker {
+	50% {
+		background-color: #bc3441;
+	}
 }
