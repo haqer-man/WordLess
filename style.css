@@ -81,8 +81,8 @@ table {
 }
 
 .keyboard:hover {
-	color: #4a4c54;
-	background-color: #bdbdc7;
+	opacity: 0.5;
+	
 	cursor: pointer;
 }
 
@@ -148,7 +148,8 @@ table {
 
 .output {
 	text-align: center;
-	color: white;
+	color: #e3e3ed;
+	font-size: 4vh;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -175,7 +176,7 @@ table {
 }
 
 .blink {
-	animation: blinker 0.5s ease-in-out 2;
+	animation: blinker 0.35s ease-in-out 2;
 }
 
 @keyframes blinker {

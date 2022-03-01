@@ -14,6 +14,13 @@ function* allBoxes() {
 	}
 }
 
+function* allKeys() {
+	const keys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	for (let i of keys) {
+		yield i;
+	}
+}
+
 function nextLetter() {
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0).id;
 
@@ -70,7 +77,6 @@ function checkLetters(guess,word) {
 		}
 		
 		var next = window.newRow.next().value;
-		console.log(next, currRow);
 		document.getElementById(next + 1).className = 'box selected-row selected';
 		for (let i = 2; i <= 4; i++) {
 			document.getElementById(`${next}${i}`).className = 'box selected-row';
@@ -86,7 +92,7 @@ function type(ltr) {
 		if (!currLtr.innerHTML) {
 			currLtr.innerHTML = ltr;
 		}
-		return currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
+		return void currLtr.id.split('')[1] !== '4' ? nextLetter() : null;
 	}
 }
 
@@ -118,25 +124,28 @@ function enter(word){
 }
 
 function clearScreen() {
-	const clear = allBoxes();
-	var b = clear.next().value;
+	const clearBoxes = allBoxes();
+	const clearKeys = allKeys();
+	var b = clearBoxes.next().value;
 	document.getElementById(b).innerHTML = '';
 	document.getElementById(b).className = 'box selected-row selected';
 	for (let i = 1; i < 4; i++) {
-		b = clear.next().value;
+		b = clearBoxes.next().value;
 		document.getElementById(b).innerHTML = '';
 		document.getElementById(b).className = 'box selected-row';
 	}
 	for (let i = 4; i < 32; i++) {
-		b = clear.next().value;
+		b = clearBoxes.next().value;
 		document.getElementById(b).innerHTML = '';
 		document.getElementById(b).className = "box";
+	}
+	for (let i = 0; i < 26; i++) {
+		document.getElementById(clearKeys.next().value).className = 'keyboard';
 	}
 	document.getElementById('output').innerHTML = '';
 }
 
 function newGame() {
-	console.log(window.scrollY)
 	window.scrollTo(0,0);
 	clearScreen();
 	window.newRow = rowNums('b');
@@ -209,9 +218,20 @@ function newGame() {
 
 newGame();
 
-// set up keyboard that will show colors that have been provided
-// make the site scroll to the bottom on success or fail
 // fix centering issue
 // DESCRIBE WHAT FUNCTIONS DO (comments)
 // make congrats message say try if 1 and tries if more than 1
 // make congrats message brighter color and bigger font
+// make site save progress
+// ^^ localStorage.setItem('itemname','contents');
+// format (<total solved>:<number>,<Solved in 1>:<number>,<solved in 2>:<number>,<solved in 3>:<number>,<solved in 4>:<number>,<solved in 5>:<number>,<solved in 6>:<number>,<solved in 7>:<number>,<solved in 8>:<number>)
+/* With localStorage:
+
+The new HTML5 localStorage Object is another way to store data locally:
+
+    To set an item in localStorage, use localStorage.setItem('itemname','contents');
+    To read an item, it's localStorage.getItem('itemname');. You can check if an item exists using "truthy" values (i.e. if(localStorage.getItem('itemname')))
+    You can alter a localStorage item using localStorage.setItem as described above.
+    You can delete a localStorage item using localStorage.removeItem('itemname').
+*/
+// add confetti
