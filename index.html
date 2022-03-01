@@ -79,45 +79,53 @@
 		<div class="output">
 			<p id="output"></p>
 		</div>
+		<!-- keyboard adapted  from https://github.com/ocrebb776/wordle-recreate/blob/main/index.html -->
 		<div class="keyboard-table">
-			<table>
-				<tr class="keyboard-row-1">
-					<th><button id="q" class="keyboard" onclick="window.type('q')">Q</button></th>
-					<th><button id="w" class="keyboard" onclick="window.type('w')">W</button></th>
-					<th><button id="e" class="keyboard" onclick="window.type('e')">E</button></th>
-					<th><button id="r" class="keyboard" onclick="window.type('r')">R</button></th>
-					<th><button id="t" class="keyboard" onclick="window.type('t')">T</button></th>
-					<th><button id="y" class="keyboard" onclick="window.type('y')">Y</button></th>
-					<th><button id="u" class="keyboard" onclick="window.type('u')">U</button></th>
-					<th><button id="i" class="keyboard" onclick="window.type('i')">I</button></th>
-					<th><button id="o" class="keyboard" onclick="window.type('o')">O</button></th>
-					<th><button id="p" class="keyboard" onclick="window.type('p')">P</button></th>
-					<th><button id="backspace" class="keyboard" onclick="back()">Back</button></th>
-				</tr>
-				<tr class="keyboard-row-2">
-					<th><button id="a" class="keyboard" onclick="window.type('a')">A</button></th>
-					<th><button id="s" class="keyboard" onclick="window.type('s')">S</button></th>
-					<th><button id="d" class="keyboard" onclick="window.type('d')">D</button></th>
-					<th><button id="f" class="keyboard" onclick="window.type('f')">F</button></th>
-					<th><button id="g" class="keyboard" onclick="window.type('g')">G</button></th>
-					<th><button id="h" class="keyboard" onclick="window.type('h')">H</button></th>
-					<th><button id="j" class="keyboard" onclick="window.type('j')">J</button></th>
-					<th><button id="k" class="keyboard" onclick="window.type('k')">K</button></th>
-					<th><button id="l" class="keyboard" onclick="window.type('l')">L</button></th>
-				</tr>
-				<tr class="keyboard-row-3">
-					<th><button id="z" class="keyboard" onclick="window.type('z')">Z</button></th>
-					<th><button id="x" class="keyboard" onclick="window.type('x')">X</button></th>
-					<th><button id="c" class="keyboard" onclick="window.type('c')">C</button></th>
-					<th><button id="v" class="keyboard" onclick="window.type('v')">V</button></th>
-					<th><button id="b" class="keyboard" onclick="window.type('b')">B</button></th>
-					<th><button id="n" class="keyboard" onclick="window.type('n')">N</button></th>
-					<th><button id="m" class="keyboard" onclick="window.type('m')">M</button></th>
-					<th><button id="enter" class="keyboard" onclick="enter(word)">Enter</button></th>
-				</tr>
-			</table>
+			<button class="keyboard" id='q' onclick="window.type('q')">Q</button>
+			<button class="keyboard" id='w' onclick="window.type('w')">W</button>
+			<button class="keyboard" id='e' onclick="window.type('e')">E</button>
+			<button class="keyboard" id='r' onclick="window.type('r')">R</button>
+			<button class="keyboard" id='t' onclick="window.type('t')">T</button>
+			<button class="keyboard" id='y' onclick="window.type('y')">Y</button>
+			<button class="keyboard" id='u' onclick="window.type('u')">U</button>
+			<button class="keyboard" id='i' onclick="window.type('i')">I</button>
+			<button class="keyboard" id='o' onclick="window.type('o')">O</button>
+			<button class="keyboard" id='p' onclick="window.type('p')">P</button><BR>
+			
+			<button class="keyboard" id='a' onclick="window.type('a')">A</button>
+			<button class="keyboard" id='s' onclick="window.type('s')">S</button>
+			<button class="keyboard" id='d' onclick="window.type('d')">D</button>
+			<button class="keyboard" id='f' onclick="window.type('f')">F</button>
+			<button class="keyboard" id='g' onclick="window.type('g')">G</button>
+			<button class="keyboard" id='h' onclick="window.type('h')">H</button>
+			<button class="keyboard" id='j' onclick="window.type('j')">J</button>
+			<button class="keyboard" id='k' onclick="window.type('k')">K</button>
+			<button class="keyboard" id='l' onclick="window.type('l')">L</button><br>
+			
+			<button class="keyboard enter"  onclick="back()"id="back"><-</button>
+			<button class="keyboard" id='z' onclick="window.type('z')">Z</button>
+			<button class="keyboard" id='x' onclick="window.type('x')">X</button>
+			<button class="keyboard" id='c' onclick="window.type('c')">C</button>
+			<button class="keyboard" id='v' onclick="window.type('v')">V</button>
+			<button class="keyboard" id='b' onclick="window.type('b')">B</button>
+			<button class="keyboard" id='n' onclick="window.type('n')">N</button>
+			<button class="keyboard" id='m' onclick="window.type('m')">M</button>
+			<button class="keyboard enter"  onclick="enter(word)"><img src="enter.svg" width="20vw" ></button>
 		</div>
 		<button class='new-game' onClick="newGame()">New Game</button>
+		<p id="prog" class="prog">
+			Games played: <span id="games"> </span> <br>
+			Total solves: <span id="total"> </span> <br>
+			Incomplete solves: <span id="not"> </span> <br>
+			Solves in 1 try: <span id="1"> </span> <br>
+			Solves in 2 tries: <span id="2"> </span> <br>
+			Solves in 3 tries: <span id="3"> </span> <br>
+			Solves in 4 tries: <span id="4"> </span> <br>
+			Solves in 5 tries: <span id="5"> </span> <br>
+			Solves in 6 tries: <span id="6"> </span> <br>
+			Solves in 7 tries: <span id="7"> </span> <br>
+			Solves in 8 tries: <span id="8"> </span>
+		</p>
 		<script src="words.txt.js"></script>
 		<script src="index.js"></script>
 	</body>

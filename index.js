@@ -59,11 +59,8 @@ function checkLetters(guess,word) {
 				y: Math.random() - 0.2
 			}
 		});
-		if(localStorage.getItem('solved')) {
-			localStorage.setItem('solved', Number(localStorage.getItem('solved'))+1);
-		} else {
-			localStorage.setItem('solved', 1);
-		}
+		localStorage.games_played = localStorage.getItem('games_played') ? Number(localStorage.games_played)+1 : "1";
+		localStorage.solved = localStorage.getItem('solved') ? Number(localStorage.solved)+1 : "1";
 		console.log('Total solved: ' + localStorage.getItem('solved'));
 		var tries = ['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1;
 		if(localStorage.getItem(`solved_in_${tries}`)) {
@@ -71,17 +68,12 @@ function checkLetters(guess,word) {
 		} else {
 			localStorage.setItem(`solved_in_${tries}`, 1);
 		}
-		if (Number(tries) === 1) {
-			document.getElementById('output').innerHTML = `Congratulations! You got it in 1 try! Click the <b>"New Game"</b> button to play again!`;
-			window.scrollTo(0,document.body.scrollHeight);
-		} else {
-			document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`;
-			window.scrollTo(0,document.body.scrollHeight);
-		}
+		Number(tries) === 1 ? document.getElementById('output').innerHTML = `Congratulations! You got it in 1 try! Click the <b>"New Game"</b> button to play again!` : document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
 			document.getElementById(guess[i]).className = 'keyboard green-letter';
 		}
+		showProgress();
 		window.scrollTo(0,document.body.scrollHeight);
 	} else if (guess.toLowerCase() !== word && currRow === 'h') {
 		document.getElementById('output').innerHTML = `Sorry! The word was <b>${word}</b>. Press the <b>"New Game"</b> button to play again!`;
@@ -89,11 +81,8 @@ function checkLetters(guess,word) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box red-letter';
 			document.getElementById(guess[i]).className = 'keyboard red-letter';
 		}
-		if (localStorage.getItem('not_solved')) {
-			localStorage.setItem('not_solved', Number(localStorage.getItem('not_solved'))+1);
-		} else {
-			localStorage.setItem('not_solved', 1);
-		}
+		localStorage.not_solved = localStorage.not_solved ? Number(localStorage.getItem('not_solved'))+1 : '1';
+		localStorage.games_played = localStorage.getItem('games_played') ? Number(localStorage.games_played)+1 : "1";
 		window.scrollTo(0,document.body.scrollHeight);
 	} else {
 		var curr = document.getElementsByClassName('selected-row');
@@ -178,9 +167,18 @@ function clearScreen() {
 	document.getElementById('output').innerHTML = '';
 }
 
+function showProgress() {
+	document.getElementById('total').innerHTML = localStorage.getItem('solved') ? localStorage.solved : '0';
+	for (let i = 1; i < 9; i++) {
+		document.getElementById(''+i).innerHTML = localStorage.getItem(`solved_in_${i}`) ? localStorage.getItem(`solved_in_${i}`) : '0';
+	}
+	document.getElementById('not').innerHTML = localStorage.getItem('not_solved') ? localStorage.not_solved : '0';
+	document.getElementById('games').innerHTML = localStorage.getItem('games_played') ? localStorage.games_played : '0';
+}
+
 function newGame() {
-	window.scrollTo(0,0);
-	clearScreen();
+	showProgress();
+	window.scrollTo(0,0);	clearScreen();
 	window.newRow = rowNums('b');
 	window.word = words[Math.floor(Math.random() * words.length)];
 	console.log(window.word);
@@ -256,3 +254,4 @@ newGame();
 // make congrats message say try if 1 and tries if more than 1
 // make congrats message brighter color and bigger font
 // make site display progress
+// add mobile compatibility
