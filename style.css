@@ -65,13 +65,11 @@ table {
 }
 
 .keyboard {
-	max-width: 6vh;
-	max-height: 6vh;
-	min-width: 7vh;
-	min-height: 7vh;
+	width: 5.5vh;
+	height: 5.5vh;
 	border: 0.25vh solid #4f4f52;
 	margin: 0.6vh;
-	font-size: 5vh;
+	font-size: 4vh;
 	background-color: #3a3a3b;
 	position: static;
 	color: white;
@@ -82,11 +80,38 @@ table {
 	display: block;
 }
 
+.keyboard:hover {
+	color: #4a4c54;
+	background-color: #bdbdc7;
+	cursor: pointer;
+}
+
 .keyboard-table {
 	margin-right: auto;
 	margin-left: auto;
 	justify-items: center;
 	align-items: center;
+	margin-bottom: 3vh;
+}
+
+.keyboard-row-1 {
+	
+}
+
+.keyboard-row-2 {
+	
+}
+
+.keyboard-row-3 {
+	
+}
+
+.keyboard#backspace {
+	/* COMPLETE THIS */
+}
+
+.keyboard#enter {
+	/* COMPLETE THIS */
 }
 
 .selected-row {

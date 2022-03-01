@@ -41,19 +41,19 @@ function checkLetters(guess,word) {
 	}
 	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
 	if (guess.toLowerCase() === word) {
-		window.scrollTo(0,document.body.scrollHeight);
 		document.getElementById('output').innerHTML = `Congratulations! You got it in ${['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1} tries! Click the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
 			document.getElementById(guess[i]).className = 'keyboard green-letter';
 		}
-	} else if (guess.toLowerCase() !== word && currRow === 'h') {
 		window.scrollTo(0,document.body.scrollHeight);
+	} else if (guess.toLowerCase() !== word && currRow === 'h') {
 		document.getElementById('output').innerHTML = `Sorry! The word was <b>${word}</b>. Press the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box red-letter';
 			document.getElementById(guess[i]).className = 'keyboard red-letter';
 		}
+		window.scrollTo(0,document.body.scrollHeight);
 	} else {
 		var curr = document.getElementsByClassName('selected-row');
 		for (let i = 3; i >= 0; i--) {
@@ -86,7 +86,7 @@ function type(ltr) {
 		if (!currLtr.innerHTML) {
 			currLtr.innerHTML = ltr;
 		}
-		return void currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
+		return currLtr.id.split('')[1] !== '4' ? nextLetter() : console.log('\n');
 	}
 }
 
@@ -110,7 +110,9 @@ function enter(word){
 		var currRow = currLtr.id.split('')[0];
 		if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) {
 			var currRow = currLtr.id.split('')[0];
-			checkLetters(`${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`,word);
+			var guess = `${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`;
+			console.log(guess)
+			checkLetters(guess, word);
 		}
 	}
 }
@@ -211,3 +213,5 @@ newGame();
 // make the site scroll to the bottom on success or fail
 // fix centering issue
 // DESCRIBE WHAT FUNCTIONS DO (comments)
+// make congrats message say try if 1 and tries if more than 1
+// make congrats message brighter color and bigger font
