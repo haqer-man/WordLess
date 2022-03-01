@@ -71,7 +71,13 @@ function checkLetters(guess,word) {
 		} else {
 			localStorage.setItem(`solved_in_${tries}`, 1);
 		}
-		document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`;
+		if (Number(tries) === 1) {
+			document.getElementById('output').innerHTML = `Congratulations! You got it in 1 try! Click the <b>"New Game"</b> button to play again!`;
+			window.scrollTo(0,document.body.scrollHeight);
+		} else {
+			document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`;
+			window.scrollTo(0,document.body.scrollHeight);
+		}
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
 			document.getElementById(guess[i]).className = 'keyboard green-letter';
