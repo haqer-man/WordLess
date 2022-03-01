@@ -31,7 +31,7 @@ function nextLetter() {
 }
 
 function checkLetters(guess,word) {
-	if (!words.includes(guess)) {
+	if (!words.includes(guess.toLowerCase())) {
 		var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box selected-row blink';
@@ -48,6 +48,17 @@ function checkLetters(guess,word) {
 	}
 	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
 	if (guess.toLowerCase() === word) {
+		confetti({
+			disableForReducedMotion: true,
+			particleCount: 100,
+			startVelocity: 30,
+			spread: 360,
+			origin: {
+				x: Math.random(),
+				// since they fall down, start a bit higher than random
+				y: Math.random() - 0.2
+			}
+		});
 		document.getElementById('output').innerHTML = `Congratulations! You got it in ${['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1} tries! Click the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
