@@ -59,7 +59,19 @@ function checkLetters(guess,word) {
 				y: Math.random() - 0.2
 			}
 		});
-		document.getElementById('output').innerHTML = `Congratulations! You got it in ${['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1} tries! Click the <b>"New Game"</b> button to play again!`;
+		if(localStorage.getItem('solved')) {
+			localStorage.setItem('solved', Number(localStorage.getItem('solved'))+1);
+		} else {
+			localStorage.setItem('solved', 1);
+		}
+		console.log('Total solved: ' + localStorage.getItem('solved'));
+		var tries = ['a','b','c','d','e','f','g','h'].indexOf(currRow) + 1;
+		if(localStorage.getItem(`solved_in_${tries}`)) {
+			localStorage.setItem(`solved_in_${tries}`, Number(localStorage.getItem(`solved_in_${tries}`))+1);
+		} else {
+			localStorage.setItem(`solved_in_${tries}`, 1);
+		}
+		document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter';
 			document.getElementById(guess[i]).className = 'keyboard green-letter';
@@ -70,6 +82,11 @@ function checkLetters(guess,word) {
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box red-letter';
 			document.getElementById(guess[i]).className = 'keyboard red-letter';
+		}
+		if (localStorage.getItem('not_solved')) {
+			localStorage.setItem('not_solved', Number(localStorage.getItem('not_solved'))+1);
+		} else {
+			localStorage.setItem('not_solved', 1);
 		}
 		window.scrollTo(0,document.body.scrollHeight);
 	} else {
@@ -128,7 +145,6 @@ function enter(word){
 		if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) {
 			var currRow = currLtr.id.split('')[0];
 			var guess = `${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`;
-			console.log(guess)
 			checkLetters(guess, word);
 		}
 	}
@@ -233,16 +249,4 @@ newGame();
 // DESCRIBE WHAT FUNCTIONS DO (comments)
 // make congrats message say try if 1 and tries if more than 1
 // make congrats message brighter color and bigger font
-// make site save progress
-// ^^ localStorage.setItem('itemname','contents');
-// format (<total solved>:<number>,<Solved in 1>:<number>,<solved in 2>:<number>,<solved in 3>:<number>,<solved in 4>:<number>,<solved in 5>:<number>,<solved in 6>:<number>,<solved in 7>:<number>,<solved in 8>:<number>)
-/* With localStorage:
-
-The new HTML5 localStorage Object is another way to store data locally:
-
-    To set an item in localStorage, use localStorage.setItem('itemname','contents');
-    To read an item, it's localStorage.getItem('itemname');. You can check if an item exists using "truthy" values (i.e. if(localStorage.getItem('itemname')))
-    You can alter a localStorage item using localStorage.setItem as described above.
-    You can delete a localStorage item using localStorage.removeItem('itemname').
-*/
-// add confetti
+// make site display progress
