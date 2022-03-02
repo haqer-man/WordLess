@@ -30,7 +30,7 @@ function nextLetter() {
 	}
 }
 
-function checkLetters(guess) {
+function checkLetters(word,guess) {
 	if (!words.includes(guess.toLowerCase())) { // if guess is not a word (in wordlist), play 'not a word' animation
 		var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
 		for (let i = 3; i >= 0; i--) {
@@ -47,7 +47,7 @@ function checkLetters(guess) {
 		return null;
 	}
 	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
-	if (guess.toLowerCase() === window.word) {
+	if (guess.toLowerCase() === word) {
 		// confetti settings from canvas-confetti npm-js page
 		confetti({ // if guess is correct, play confetti animation
 			disableForReducedMotion: true,
@@ -71,13 +71,13 @@ function checkLetters(guess) {
 		}
 		showProgress();
 		window.scrollTo(0,document.body.scrollHeight); // scroll to bottom of page/document
-	} else if (guess.toLowerCase() !== window.word && currRow === 'h') { // if on last row and guess is incorrect...
-		document.getElementById('output').innerHTML = `Sorry! The word was <b>${window.word}</b>. Press the <b>"New Game"</b> button to play again!`;
+	} else if (guess.toLowerCase() !== word && currRow === 'h') { // if on last row and guess is incorrect...
+		document.getElementById('output').innerHTML = `Sorry! The word was <b>${word}</b>. Press the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
-			if (guess[i].toLowerCase() === window.word[i]) {
+			if (guess[i] === word[i]) {
 				document.getElementById(`h${i+1}`).className = 'box green-letter'; // if letter is correct, make it green
 				document.getElementById(guess[i]).className = 'keyboard green-letter'; // also make corresponding key on virtual keyboard green
-			} else if (window.word.includes(guess[i].toLowerCase())) {
+			} else if (word.includes(guess[i])) {
 				document.getElementById(`h${i+1}`).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
 				document.getElementById(guess[i]).className = 'keyboard yellow-letter'; // also make corresponding key on virtual keyboard yellow
 			} else {
@@ -91,10 +91,10 @@ function checkLetters(guess) {
 	} else {
 		var curr = document.getElementsByClassName('selected-row');
 		for (let i = 3; i >= 0; i--) {
-			if (guess[i].toLowerCase() === window.word[i]) {
+			if (guess[i] === word[i]) {
 				curr.item(i).className = 'box green-letter'; // if letter is correct, make it green
 				document.getElementById(guess[i]).className = 'keyboard green-letter'; // also make corresponding key on virtual keyboard green
-			} else if (window.word.includes(guess[i].toLowerCase())) {
+			} else if (word.includes(guess[i])) {
 				curr.item(i).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
 				document.getElementById(guess[i]).className = 'keyboard yellow-letter'; // also make corresponding key on virtual keyboard yellow
 			} else {
@@ -137,14 +137,17 @@ function back() {
 	}
 }
 
-function enter(){
+function enter(word){
 	var currLtr = document.getElementsByClassName('box selected-row selected').item(0); // first result of all elements with classname 'box selected-row selected' (returns <list>)
-	if (currLtr !== null) {
+	if (currLtr !== null) { // if a box is selected
 		var currRow = currLtr.id.split('')[0];
 		if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) { // if all boxes in row filled
 			var currRow = currLtr.id.split('')[0];
-			var guess = `${document.getElementById(currRow+1).innerHTML}${document.getElementById(currRow+2).innerHTML}${document.getElementById(currRow+3).innerHTML}${document.getElementById(currRow+4).innerHTML}`; // concatenate each box of a row into the user's guess
-			checkLetters(guess);
+			var guess = '';
+			for (let i = 1; i < 5; i++) {
+				guess += document.getElementById(currRow+i).innerHTML // concatenate all boxes in row to form user's guess
+			}
+			checkLetters(word,guess);
 		}
 	}
 }
@@ -186,7 +189,7 @@ function newGame() {
 	clearScreen();
 	window.newRow = rowNums('b');
 	window.word = words[Math.floor(Math.random() * words.length)]; // Select a random word from wordlist as target word
-	console.log(window.word);
+	console.log(btoa(window.word));
 	
 	// Event listeners based on https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 	window.addEventListener('keydown', function(event) {
@@ -303,8 +306,4 @@ function newGame() {
 newGame();
 
 // fix centering issue
-// DESCRIBE WHAT FUNCTIONS DO (comments)
-// make congrats message say try if 1 and tries if more than 1
-// make congrats message brighter color and bigger font
-// make site display progress
 // add mobile compatibility
