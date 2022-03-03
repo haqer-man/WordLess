@@ -306,6 +306,9 @@ function newGame() {
 
 newGame();
 
+
+// Future Updates:
 // fix centering issue
 // add mobile compatibility
 // scroll automatically on enter
+// 
