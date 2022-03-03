@@ -2,6 +2,10 @@
 
 ### Popular word game [Wordle](https://www.nytimes.com/games/wordle/index.html),  but **less**!
 
+***
+
+### Note: Does not work on mobile ~~yet~~
+
 #
 
 #### Find me on Discord @***Lunatic***#**3621**
