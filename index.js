@@ -189,7 +189,6 @@ function newGame() {
 	clearScreen();
 	window.newRow = rowNums('b');
 	window.word = words[Math.floor(Math.random() * words.length)]; // Select a random word from wordlist as target word
-	console.log(btoa(window.word));
 	
 	// Event listeners based on https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 	window.addEventListener('keydown', function(event) {
