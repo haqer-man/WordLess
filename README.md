@@ -1,4 +1,4 @@
-# WordLESS
+# [WordLESS](https://haqer-man.github.io/WordLess/)
 
 ### Popular word game [Wordle](https://www.nytimes.com/games/wordle/index.html),  but **less**!
 
