@@ -134,6 +134,8 @@ function back() {
 			document.getElementById(currLtr.id.split('')[0] + (Number(currLtr.id.split('')[1]) - 1)).className = 'box selected-row selected';
 			document.getElementById(currLtr.id.split('')[0] + (Number(currLtr.id.split('')[1]) - 1)).innerHTML = '';
 		}
+	} else {
+		currLtr.innerHTML = '';
 	}
 }
 
@@ -306,3 +308,4 @@ newGame();
 
 // fix centering issue
 // add mobile compatibility
+// scroll automatically on enter
