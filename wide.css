@@ -64,7 +64,7 @@ table {
 	margin-right: auto;
 }
 /* https://github.com/ocrebb776/wordle-recreate/blob/main/wide.css */
-.keyboard {
+.keyboard-table button {
 	width: 4vw;
 	height: 7vh;
 	margin-top: 1vh;
@@ -78,7 +78,7 @@ table {
 	font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
-.keyboard:hover {
+.key:hover {
 	opacity: 0.5;
 	
 	cursor: pointer;

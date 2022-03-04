@@ -2,7 +2,6 @@
 body {
 	font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 	background-color: #121213;
-	font-size: 0px;
 }
 .heading-center {
 	text-align: center;
@@ -13,29 +12,23 @@ body {
 	letter-spacing: 1vw;
 	width: 90vw;
 	top: 0;
-	float: top;
 	margin-left: 5vw;
 	margin-right: 5vw;
-	position: absolute;
 }
 .subheading {
 	text-align: center;
-	height: 20vh;
-	font-size: 2.5vh;
+	height: 15vh;
+	font-size: 2vh;
 	color: white;
 	border-bottom: 0.1vw solid #4f4f52;
 	letter-spacing: 0.1vw;
-	width: 90vw;
 	float: top;
-	margin-top: 2vh;
-	margin-left: 5vw;
-	margin-right: 5vw;
-	position: absolute;
+	margin-top: 3vh;
 }
 .playspace-table-center {
 	color: white;
 	text-align: center;
-	margin-top: 11vh;
+	margin-top: 4vh;
 }
 .box {
 	text-align: center;
@@ -51,7 +44,7 @@ body {
 	color: white;
 	margin-left: 0vw;
 	margin-bottom: 0vh;
-	test-transform: capitalize;
+	text-transform: capitalize;
 	display: box;
 }
 table {
@@ -61,20 +54,20 @@ table {
 .first {
 	color: white;
 }
-.keyboard {
-	width: 9vw;
-	height: 8vh;
+.keyboard-table button {
+	width: 7vw;
+	height: 6vh;
 	margin-right: 0px;
 	margin-left: 0.5vw;
 	margin-top: 1vh;
 	border: none;
 	border-radius: 1vh;
-	font-size: 4vw;
+	font-size: 1rem;
 	color: white;
 	background-color: #818384;
 	font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
-.keyboard:hover {
+.key:hover {
 	opacity: 0.5;
 }
 .keyboard-table {
@@ -82,7 +75,6 @@ table {
 	left: 2.75vw;
 	bottom: 1vh;
 	text-align: center;
-	font-size: 0px;
 }
 .selected-row {
 	background-color: #737373;
@@ -135,16 +127,17 @@ table {
 }
 .prog {
 	text-align: center;
-	height: 25ch;
+	height: 15rem;
 	width: 60vw;
 	background-color: #61636e;
 	color: #e3e3ed;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 24.5vh;
-	font-size: 1.5ch;
-	border: 0.5ch solid #bfa7ab;
-	display: block;
+	margin-bottom: 17rem;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	border: 0.25rem solid #bfa7ab;
+	
 }
 .blink {
 	animation: blinker 0.35s linear 2;

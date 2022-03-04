@@ -67,7 +67,7 @@ function checkLetters(word,guess) {
 		Number(tries) === 1 ? document.getElementById('output').innerHTML = `Congratulations! You got it in 1 try! Click the <b>"New Game"</b> button to play again!` : document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`; // if solved in single try, use singular form of 'try' in output message, otherwise, use plural form ('tries')
 		for (let i = 3; i >= 0; i--) {
 			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter'; // set all letters in row green
-			document.getElementById(guess[i]).className = 'keyboard green-letter'; // set all keys for correct letters green
+			document.getElementById(guess[i]).className = 'key green-letter'; // set all keys for correct letters green
 		}
 		showProgress();
 		window.scrollTo(0,document.body.scrollHeight); // scroll to bottom of page/document
@@ -76,13 +76,13 @@ function checkLetters(word,guess) {
 		for (let i = 3; i >= 0; i--) {
 			if (guess[i] === word[i]) {
 				document.getElementById(`h${i+1}`).className = 'box green-letter'; // if letter is correct, make it green
-				document.getElementById(guess[i]).className = 'keyboard green-letter'; // also make corresponding key on virtual keyboard green
+				document.getElementById(guess[i]).className = 'key green-letter'; // also make corresponding key on virtual keyboard green
 			} else if (word.includes(guess[i])) {
 				document.getElementById(`h${i+1}`).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
-				document.getElementById(guess[i]).className = 'keyboard yellow-letter'; // also make corresponding key on virtual keyboard yellow
+				document.getElementById(guess[i]).className = 'key yellow-letter'; // also make corresponding key on virtual keyboard yellow
 			} else {
 				document.getElementById(`h${i+1}`).className = 'box red-letter'; // if letter is not part of target word, make it red
-				document.getElementById(guess[i]).className = 'keyboard red-letter'; // also make corresponding key on virtual keyboard red
+				document.getElementById(guess[i]).className = 'key red-letter'; // also make corresponding key on virtual keyboard red
 			}
 		}
 		localStorage.not_solved = localStorage.not_solved ? Number(localStorage.getItem('not_solved'))+1 : '1'; // add one to value of 'not_solved' in local storage if it already exists, otherwise, set it to 1
@@ -93,13 +93,13 @@ function checkLetters(word,guess) {
 		for (let i = 3; i >= 0; i--) {
 			if (guess[i] === word[i]) {
 				curr.item(i).className = 'box green-letter'; // if letter is correct, make it green
-				document.getElementById(guess[i]).className = 'keyboard green-letter'; // also make corresponding key on virtual keyboard green
+				document.getElementById(guess[i]).className = 'key green-letter'; // also make corresponding key on virtual keyboard green
 			} else if (word.includes(guess[i])) {
 				curr.item(i).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
-				document.getElementById(guess[i]).className = 'keyboard yellow-letter'; // also make corresponding key on virtual keyboard yellow
+				document.getElementById(guess[i]).className = 'key yellow-letter'; // also make corresponding key on virtual keyboard yellow
 			} else {
 				curr.item(i).className = 'box red-letter'; // if letter is not part of target word, make it red
-				document.getElementById(guess[i]).className = 'keyboard red-letter'; // also make corresponding key on virtual keyboard red
+				document.getElementById(guess[i]).className = 'key red-letter'; // also make corresponding key on virtual keyboard red
 			}
 		}
 		
@@ -174,7 +174,7 @@ function clearScreen() {
 		document.getElementById(b).className = "box";
 	}
 	for (let i = 0; i < 26; i++) {
-		document.getElementById(clearKeys.next().value).className = 'keyboard'; // Set the classname of the document with an id of the next value of the clearKeys function to 'keyboard'
+		document.getElementById(clearKeys.next().value).className = 'key'; // Set the classname of the document with an id of the next value of the clearKeys function to 'keyboard'
 	}
 	document.getElementById('output').innerHTML = '';
 }
@@ -306,10 +306,8 @@ function newGame() {
 	}, true);
 }
 
-window.onload = function () {
-	if (window.innerWidth < window.innerHeight) {
-		document.getElementById('style').href = 'narrow.css';
-	}
+if (window.innerWidth < window.innerHeight) {
+	document.getElementById('style').href = 'narrow.css';
 }
 newGame();
 
@@ -317,4 +315,4 @@ newGame();
 // Future Updates:
 // fix centering issue
 // add mobile compatibility
-// 
+// add dropdowns to fix size
