@@ -109,7 +109,7 @@ function checkLetters(word,guess) {
 			document.getElementById(`${next}${i}`).className = 'box selected-row'; // move to next row
 		}
 		if (['a','b','c','d','e','f','g','j'].indexOf(curr.item(0).id[0]) > 3) {
-			window.scrollBy(0,document.getElementById('a1').scrollHeight);
+			window.scrollBy(0,1.25 * document.getElementById('a1').scrollHeight);
 		}
 	}
 }
@@ -306,11 +306,7 @@ function newGame() {
 	}, true);
 }
 
-window.onload = function () {
-	if (window.innerWidth < window.innerHeight) {
-		document.getElementById('style').href = 'narrow.css';
-	}
-}
+
 newGame();
 
 
