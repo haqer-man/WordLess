@@ -306,7 +306,11 @@ function newGame() {
 	}, true);
 }
 
-
+window.onload = function () {
+	if (window.innerWidth < window.innerHeight) {
+		document.getElementById('style').href = 'narrow.css';
+	}
+}
 newGame();
 
 
