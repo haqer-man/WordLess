@@ -108,6 +108,9 @@ function checkLetters(word,guess) {
 		for (let i = 2; i <= 4; i++) {
 			document.getElementById(`${next}${i}`).className = 'box selected-row'; // move to next row
 		}
+		if (['a','b','c','d','e','f','g','j'].indexOf(curr.item(0).id[0]) > 3) {
+			window.scrollBy(0,document.getElementById('a1').scrollHeight);
+		}
 	}
 }
 
