@@ -4,7 +4,7 @@ body {
 } /* https://www.w3schools.com/css/css_dropdowns.asp */
 .rules {
 	text-align: center;
-	font-size: 1.15rem;
+	font-size: 1.5rem;
 	color: #f75244;
 	padding-inline: 5px;
 	padding-block: 3px;
@@ -54,7 +54,7 @@ body {
 
 .subheading {
 	text-align: center;
-	height: 13.75vh;
+	height: 14.25vh;
 	font-size: 2.5vh;
 	color: white;
 	border-bottom: 2px solid #4f4f52;
