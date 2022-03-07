@@ -12,14 +12,16 @@
 	</head>
 	<body>
 		<div class="heading-center">
-			Word<b>less</b>
+			<span>Word<b>less</b></span>
 		</div>
 		<div class="subheading">
-			Guess the 4-letter word in 8 attempts or less!<br>
-			<b>Type a 4-letter word, then hit enter to begin!</b><br>
-			<span class="green">Green</span> - Letter is part of target word and is in the correct position.<br>
-			<span class="yellow">Yellow</span> - Letter part of target word, but in wrong position.<br>
-			<span class="red">Red</span> - Letter not part of target word.
+			<p><b>Type a 4-letter word, then hit enter to begin!</b></p>
+			<div class="info-dropdown">
+				<span class="rules"><b>Hover for rules</b></span>
+				<div class="info-content">
+					<p>Guess the word in 8 attempts or less!<br><b>Type a 4-letter word, then hit enter to begin!</b><br><span class="green">Green</span> - Letter is part of target word and in correct position.<br><span class="yellow">Yellow</span> - Letter is part of target word, but in wrong position.<br><span class="red">Red</span> - Letter is not part of target word.</p>
+				</div>
+			</div>
 		</div>
 		<div class="playspace-table-center">
 			<b>
@@ -80,37 +82,37 @@
 			<p id="output"></p>
 		</div>
 		<!-- keyboard adapted  from https://github.com/ocrebb776/wordle-recreate/blob/main/index.html -->
-		<div class="keyboard-table">
-			<button class="keyboard" id='q' onclick="window.type('q')">Q</button>
-			<button class="keyboard" id='w' onclick="window.type('w')">W</button>
-			<button class="keyboard" id='e' onclick="window.type('e')">E</button>
-			<button class="keyboard" id='r' onclick="window.type('r')">R</button>
-			<button class="keyboard" id='t' onclick="window.type('t')">T</button>
-			<button class="keyboard" id='y' onclick="window.type('y')">Y</button>
-			<button class="keyboard" id='u' onclick="window.type('u')">U</button>
-			<button class="keyboard" id='i' onclick="window.type('i')">I</button>
-			<button class="keyboard" id='o' onclick="window.type('o')">O</button>
-			<button class="keyboard" id='p' onclick="window.type('p')">P</button><BR>
+		<div class="keyboard">
+			<button class="key" id='q' onclick="window.type('q')">Q</button>
+			<button class="key" id='w' onclick="window.type('w')">W</button>
+			<button class="key" id='e' onclick="window.type('e')">E</button>
+			<button class="key" id='r' onclick="window.type('r')">R</button>
+			<button class="key" id='t' onclick="window.type('t')">T</button>
+			<button class="key" id='y' onclick="window.type('y')">Y</button>
+			<button class="key" id='u' onclick="window.type('u')">U</button>
+			<button class="key" id='i' onclick="window.type('i')">I</button>
+			<button class="key" id='o' onclick="window.type('o')">O</button>
+			<button class="key" id='p' onclick="window.type('p')">P</button><BR>
 			
-			<button class="keyboard" id='a' onclick="window.type('a')">A</button>
-			<button class="keyboard" id='s' onclick="window.type('s')">S</button>
-			<button class="keyboard" id='d' onclick="window.type('d')">D</button>
-			<button class="keyboard" id='f' onclick="window.type('f')">F</button>
-			<button class="keyboard" id='g' onclick="window.type('g')">G</button>
-			<button class="keyboard" id='h' onclick="window.type('h')">H</button>
-			<button class="keyboard" id='j' onclick="window.type('j')">J</button>
-			<button class="keyboard" id='k' onclick="window.type('k')">K</button>
-			<button class="keyboard" id='l' onclick="window.type('l')">L</button><br>
+			<button class="key" id='a' onclick="window.type('a')">A</button>
+			<button class="key" id='s' onclick="window.type('s')">S</button>
+			<button class="key" id='d' onclick="window.type('d')">D</button>
+			<button class="key" id='f' onclick="window.type('f')">F</button>
+			<button class="key" id='g' onclick="window.type('g')">G</button>
+			<button class="key" id='h' onclick="window.type('h')">H</button>
+			<button class="key" id='j' onclick="window.type('j')">J</button>
+			<button class="key" id='k' onclick="window.type('k')">K</button>
+			<button class="key" id='l' onclick="window.type('l')">L</button><br>
 			
-			<button class="keyboard enter"  onclick="back()"id="back"><-</button>
-			<button class="keyboard" id='z' onclick="window.type('z')">Z</button>
-			<button class="keyboard" id='x' onclick="window.type('x')">X</button>
-			<button class="keyboard" id='c' onclick="window.type('c')">C</button>
-			<button class="keyboard" id='v' onclick="window.type('v')">V</button>
-			<button class="keyboard" id='b' onclick="window.type('b')">B</button>
-			<button class="keyboard" id='n' onclick="window.type('n')">N</button>
-			<button class="keyboard" id='m' onclick="window.type('m')">M</button>
-			<button class="keyboard enter"  onclick="enter(word)"><img src="enter.svg" width="20vw" ></button>
+			<button class="key enter"  onclick="back()"id="back"><-</button>
+			<button class="key" id='z' onclick="window.type('z')">Z</button>
+			<button class="key" id='x' onclick="window.type('x')">X</button>
+			<button class="key" id='c' onclick="window.type('c')">C</button>
+			<button class="key" id='v' onclick="window.type('v')">V</button>
+			<button class="key" id='b' onclick="window.type('b')">B</button>
+			<button class="key" id='n' onclick="window.type('n')">N</button>
+			<button class="key" id='m' onclick="window.type('m')">M</button>
+			<button class="key enter"  onclick="enter(word)"><img src="enter.svg" width="20vw" ></button>
 		</div>
 		<button class='new-game' onClick="newGame()">New Game</button>
 		<p id="prog" class="prog">
