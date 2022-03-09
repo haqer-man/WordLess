@@ -188,7 +188,8 @@ table {
 
 .prog {
 	text-align: center;
-	height: 25ch;
+	padding-top: 3px;
+	height: 25.5vh;
 	width: 40vw;
 	background-color: #61636e;
 	color: #e3e3ed;
