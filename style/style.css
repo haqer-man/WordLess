@@ -1,0 +1,45 @@
+.selected {
+	background-color: #bcaeae;
+}
+
+.output {
+	color: #e3e3ed;
+	font-size: 4vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.new-game {
+	height: 5vh;
+	width: 14vw;
+	background-color: #4a4c54;
+	color: #e3e3ed;
+	margin-left: 42vw;
+	margin-right: 42vw;
+	font-size: 3vh;
+	border: 0.5vh dashed #e3e3ed;
+	position: static;
+	transition-duration: 0.4s;
+}
+
+.new-game:hover {
+	color: #4a4c54;
+	background-color: #bdbdc7;
+	border: 0.5vh dashed #4a4c54;
+	cursor: pointer;
+}
+
+.prog {
+	height: 25ch;
+	width: 40vw;
+	background-color: #61636e;
+	color: #e3e3ed;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 27vh;
+	font-size: 1.5ch;
+	border: 0.5ch solid #bfa7ab;
+}
+
+
+

@@ -1,0 +1,71 @@
+/*DN: */
+/*instead of setting hardcoded hexcodes everywhere for colours, we'll pick a few colours*/
+/*we will use as our base colours and put them in CSS variables. Throughout our CSS files, we */
+/*use these variables instead where colours are concerned. If you decide to change your colours,*/
+/*there is only 1 place now where you have to change them, rather than finding each individual */
+/*hardcoded hexcode ( which is a pain ). We're gonna be smart about it instead ;)*/
+
+/*Another perk is that you don't end up with 500 slightly different colour shades, that's not*/
+/*really a good practice anyway. Simplicity = a clean look*/
+
+:root {
+    --primary-color: #f4f4f4;
+    --secondary-color: #0e0b0b;
+
+    --tertiary-color: #818384;
+    --quaternary-color: #4e4a4a;
+    --quinary-color: #737373;
+
+    --senary-color: #0259d3;
+
+    /*alternatively you can also expand this to things like:*/
+    /*--primary-text-color: var(--primary-color);*/
+    /*--warning-color: orange; ( a warning color )*/
+    /*--danger-color: red; ( attention from user is needed here! )*/
+    /*etc*/
+
+    /*DN: your old styling below. The .red gives font color red and then red-letter
+    is a background colour. That's not logical :) They are also the same colours, so
+    that's a great opportunity to use some CSS vars again*/
+    /*.red {*/
+    /*    color: #bc3441;*/
+    /*}*/
+
+    /*.yellow {*/
+    /*    color: #c9b63b;*/
+    /*}*/
+
+    /*.green {*/
+    /*    color: #24c662;*/
+    /*}*/
+
+    /*.red-letter {*/
+    /*    background-color: #bc3441;*/
+    /*}*/
+
+    /*.yellow-letter {*/
+    /*    background-color: #c9b63b;*/
+    /*}*/
+
+    /*.green-letter {*/
+    /*    background-color: #24c662;*/
+    /*}*/
+
+    /*DN: instead we could do:*/
+
+    --red: #bc3441;
+    --yellow: #c9b63b;
+    --green: #24c662;
+}
+
+/*and then:*/
+.red-text { color: var(--red ) }
+.yellow-text { color: var(--yellow ) }
+.green-text { color: var(--green ) }
+
+.red-bg { background-color: var(--red) }
+.yellow-bg { background-color: var(--yellow) }
+.green-bg { background-color: var(--green) }
+
+/*DN: Now when you maybe want a different type of red or whatever, you *only* need to change it in 1 place*/
+

@@ -1,0 +1,39 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+
+    /*DN: I increased opacity for better readability. */
+    /*Usability > ALWAYS < has to comes before aesthetics*/
+    opacity: 0.95;
+    background-color: var(--quaternary-color);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    /*DN: personal preference but box-shadow generally sucks unless it's vert subtle*/
+    /*box-shadow: 0px 8px 16px 0px rgb(120,120,120,1);*/
+
+    /*DN: text is already white, we dont need another color prop*/
+    /*color: white;*/
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.show-rules {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: var(--red);
+    padding: .25rem .5rem;
+    border: 1px dashed var(--senary-color);
+}
+
+.dropdown:hover .show-rules {
+    opacity: 0.3;
+    cursor: pointer;
+}

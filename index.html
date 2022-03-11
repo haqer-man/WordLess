@@ -2,133 +2,305 @@
 
 <!-- Inspiration taken from https://github.com/ocrebb776/wordle-recreate -->
 
-<html>
+<html lang="en">
+<!--DN:-->
+<!--"The HTML lang attribute is used to identify the language of text content on the web. This information helps search-->
+<!--engines return language specific results, and it is also used by screen readers that switch language profiles to provide-->
+<!--the correct accent and pronunciation"-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--		DN: read more here about initial-scale https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag-->
+
 		<title>Wordless</title>
-		<link href="style.css" rel="stylesheet" type="text/css" />
-		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+		<link href="./styles/index.css" rel="stylesheet" type="text/css" />
+
+		<script defer src="./scripts/words.txt.js"></script>
+		<script defer src="./scripts/index.js"></script>
+<!--		DN:-->
+<!--		you're not wrong about placing the script tags at the bottom ( but not inside the body tags, just inside the-->
+<!--		html tag ) as in some cases your script will fail if you put your script tags at the top while not all the DOM-->
+<!--		elements have been loaded yet.-->
+
+<!--		What I did here instead is put them here in the head and added the 'defer' attribute: "it specifies that the-->
+<!--		script is downloaded in parallel to parsing the page, and executed after the page has finished parsing". Read-->
+<!--		more about that here: https://www.w3schools.com/tags/att_script_defer.asp-->
+
+<!--	    Personally if possible I prefer to put them at the top but thats not a hard rule-->
 	</head>
 	<body>
-		<div class="heading-center">
-			<span>Word<b>less</b></span>
-		</div>
-		<div class="subheading">
-			<p><b>Type a 4-letter word, then hit enter to begin!</b></p>
-			<div class="info-dropdown">
-				<span class="rules"><b>Hover for instructions</b></span>
-				<div class="info-content">
-					<p>Guess the word in 8 attempts or less!<br><b>Type a 4-letter word, then hit enter to begin!</b><br><span class="green">Green</span> - Letter is part of target word and in correct position.<br><span class="yellow">Yellow</span> - Letter is part of target word, but in wrong position.<br><span class="red">Red</span> - Letter is not part of target word.</p>
+<!--		DN:-->
+<!--		There are going to be a lot of changes below from here, I won't comment on them all individually. What you can-->
+<!--		google is 'writing semantic html': which basically boils down to using the intended and proper html tags and -->
+<!--		structures. Your site will have better accessibility score and will therefore also be ranked better by search -->
+<!--		engines.-->
+
+<!--	if you would have a navigation bar, it might go here:-->
+<!--	<nav></nav>-->
+
+		<header>
+			<section>
+<!--				DN: these grid / column / content tags are not a semantic thing, but a structure I like to use. There is-->
+<!--				a specific system here that, in combination with the CSS, ensure a flexible/responsive layout-->
+				<div class="grid">
+					<div class="column">
+						<div class="content">
+							<h1>Word<span class="bold">less</span></h1>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="playspace-table-center">
-			<b>
-			<table>
-				<tr>
-					<th><button class="box selected-row selected" id="a1"></button></th>
-					<th><button class="box selected-row" id="a2"></button></th>
-					<th><button class="box selected-row" id="a3"></button></th>
-					<th><button class="box selected-row" id="a4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="b1"></button></th>
-					<th><button class="box" id="b2"></button></th>
-					<th><button class="box" id="b3"></button></th>
-					<th><button class="box" id="b4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="c1"></button></th>
-					<th><button class="box" id="c2"></button></th>
-					<th><button class="box" id="c3"></button></th>
-					<th><button class="box" id="c4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="d1"></button></th>
-					<th><button class="box" id="d2"></button></th>
-					<th><button class="box" id="d3"></button></th>
-					<th><button class="box" id="d4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="e1"></button></th>
-					<th><button class="box" id="e2"></button></th>
-					<th><button class="box" id="e3"></button></th>
-					<th><button class="box" id="e4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="f1"></button></th>
-					<th><button class="box" id="f2"></button></th>
-					<th><button class="box" id="f3"></button></th>
-					<th><button class="box" id="f4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="g1"></button></th>
-					<th><button class="box" id="g2"></button></th>
-					<th><button class="box" id="g3"></button></th>
-					<th><button class="box" id="g4"></button></th>
-				</tr>
-				<tr>
-					<th><button class="box" id="h1"></button></th>
-					<th><button class="box" id="h2"></button></th>
-					<th><button class="box" id="h3"></button></th>
-					<th><button class="box" id="h4"></button></th>
-				</tr>
-			</table>
-			</b>
-		</div>
-		<br>
-		<div class="output">
-			<p id="output"></p>
-		</div>
-		<!-- keyboard adapted  from https://github.com/ocrebb776/wordle-recreate/blob/main/index.html -->
-		<div class="keyboard">
-			<button class="key" id='q' onclick="window.type('q')">Q</button>
-			<button class="key" id='w' onclick="window.type('w')">W</button>
-			<button class="key" id='e' onclick="window.type('e')">E</button>
-			<button class="key" id='r' onclick="window.type('r')">R</button>
-			<button class="key" id='t' onclick="window.type('t')">T</button>
-			<button class="key" id='y' onclick="window.type('y')">Y</button>
-			<button class="key" id='u' onclick="window.type('u')">U</button>
-			<button class="key" id='i' onclick="window.type('i')">I</button>
-			<button class="key" id='o' onclick="window.type('o')">O</button>
-			<button class="key" id='p' onclick="window.type('p')">P</button><BR>
-			
-			<button class="key" id='a' onclick="window.type('a')">A</button>
-			<button class="key" id='s' onclick="window.type('s')">S</button>
-			<button class="key" id='d' onclick="window.type('d')">D</button>
-			<button class="key" id='f' onclick="window.type('f')">F</button>
-			<button class="key" id='g' onclick="window.type('g')">G</button>
-			<button class="key" id='h' onclick="window.type('h')">H</button>
-			<button class="key" id='j' onclick="window.type('j')">J</button>
-			<button class="key" id='k' onclick="window.type('k')">K</button>
-			<button class="key" id='l' onclick="window.type('l')">L</button><br>
-			
-			<button class="key enter"  onclick="back()"id="back"><-</button>
-			<button class="key" id='z' onclick="window.type('z')">Z</button>
-			<button class="key" id='x' onclick="window.type('x')">X</button>
-			<button class="key" id='c' onclick="window.type('c')">C</button>
-			<button class="key" id='v' onclick="window.type('v')">V</button>
-			<button class="key" id='b' onclick="window.type('b')">B</button>
-			<button class="key" id='n' onclick="window.type('n')">N</button>
-			<button class="key" id='m' onclick="window.type('m')">M</button>
-			<button class="key enter"  onclick="enter(word)"><img src="enter.svg" width="20vw" ></button>
-		</div>
-		<button class='new-game' onClick="newGame()">New Game</button>
-		<p id="prog" class="prog">
-			Games played: <span id="games"> </span> <br>
-			Total solves: <span id="total"> </span> <br>
-			Incomplete solves: <span id="not"> </span> <br>
-			Solves in 1 try: <span id="1"> </span> <br>
-			Solves in 2 tries: <span id="2"> </span> <br>
-			Solves in 3 tries: <span id="3"> </span> <br>
-			Solves in 4 tries: <span id="4"> </span> <br>
-			Solves in 5 tries: <span id="5"> </span> <br>
-			Solves in 6 tries: <span id="6"> </span> <br>
-			Solves in 7 tries: <span id="7"> </span> <br>
-			Solves in 8 tries: <span id="8"> </span>
-		</p>
-		<script src="words.txt.js"></script>
-		<script src="index.js"></script>
+			</section>
+		</header>
+
+		<main>
+			<section>
+				<div class="grid">
+					<div class="column">
+						<div class="content">
+							<h2>Type a 4-letter word, then hit enter to begin!</h2>
+
+<!--								DN: for usability, I would not recommend to show something on hover. It's better if-->
+<!--								I could click it, it opens, I click again, it closes. You can do this with CSS only:-->
+<!--								search for 'CSS only checkbox dropdown'. -->
+							<div class="dropdown">
+<!--								DN: renamed 'info-dropdown' to just dropdown. That's all the element is: you don't need -->
+<!--								to specify that is has 'information'. If you need to select this element specifically,-->
+<!--								because you have multiple dropdowns on a page for example, I'd give it an ID instead and-->
+<!--								use that to select it-->
+								<p class="bold show-rules">Hover for instructions</p>
+<!--								DN: renamed 'rules' to show-rules: because that's what this class does. It shows rules-->
+<!--								on hover. It also probably shouldn't really be a p semantically, but let's leave it for now-->
+
+								<div class="dropdown-content">
+<!--									DN: likewise here, it's not info-content but the content in the dropdown. This is a better-->
+<!--									name, because then you can reuse it for anything-->
+
+<!--									DN: You used a lot of <br> to create 'enters'. We don't really use br anymore, use the-->
+<!--									semantic p(aragraph) tag to group sentences. It's okay if you have only 1 sentence-->
+<!--									in a p tag: it doesn't have to be a paragraph despite the name-->
+									<div class="content">
+										<p>Guess the word in 8 attempts or less!</p>
+										<p class="bold">
+											Type a 4-letter word, then hit enter to begin!
+										</p>
+										<p>
+											<span class="green-text bold">Green</span>
+											- Letter is part of target word and in correct position.
+										</p>
+										<p>
+											<span class="yellow-text bold">Yellow</span>
+											- Letter is part of target word, but in wrong position.
+										</p>
+										<p>
+											<span class="red-text bold">Red</span>
+											- Letter is not part of target word.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="grid">
+					<div class="column">
+						<div class="content">
+
+							<div class="playspace">
+<!--							<div class="playspace-table-center">-->
+<!--								DN: also renamed this ( from playspace-table-center ). No need to specify that it is a-->
+<!--								table nor that it's centered. What if you'd wanna align it to the left some day? You'll-->
+<!--								need to go through your templates and change all the classnames. We wanna reduce as much-->
+<!--								future work as possible! The styling you applied to this class originally also didn't-->
+<!--								specify any kind of centering-->
+
+<!--								This div is also not a table: what if I change the below table-->
+<!--								to a just a bunch of divs in a grid? The div element *contains* a table now, but it's -->
+<!--								not a table itself.-->
+
+								<table>
+									<tr>
+										<th><button class="selected-row selected" id="a1"></button></th>
+										<th><button class="selected-row" id="a2"></button></th>
+										<th><button class="selected-row" id="a3"></button></th>
+										<th><button class="selected-row" id="a4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="b1"></button></th>
+										<th><button id="b2"></button></th>
+										<th><button id="b3"></button></th>
+										<th><button id="b4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="c1"></button></th>
+										<th><button id="c2"></button></th>
+										<th><button id="c3"></button></th>
+										<th><button id="c4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="d1"></button></th>
+										<th><button id="d2"></button></th>
+										<th><button id="d3"></button></th>
+										<th><button id="d4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="e1"></button></th>
+										<th><button id="e2"></button></th>
+										<th><button id="e3"></button></th>
+										<th><button id="e4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="f1"></button></th>
+										<th><button id="f2"></button></th>
+										<th><button id="f3"></button></th>
+										<th><button id="f4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="g1"></button></th>
+										<th><button id="g2"></button></th>
+										<th><button id="g3"></button></th>
+										<th><button id="g4"></button></th>
+									</tr>
+									<tr>
+										<th><button id="h1"></button></th>
+										<th><button id="h2"></button></th>
+										<th><button id="h3"></button></th>
+										<th><button id="h4"></button></th>
+									</tr>
+								</table>
+
+							</div>
+
+						</div>
+						<div class="content">
+							<div class="output">
+								<p id="output"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="grid">
+					<div class="column">
+						<div class="content">
+
+							<!--						DN: I have used a list here with a nested list:-->
+							<!--						- the keyboard is a list of key rows-->
+							<!--						- the key rows contain a list of keys-->
+							<!--						- they are ol elements ( ordered lists ) because the order matters here ( it should-->
+							<!--						indicate a specific qwerty style keyboard ). Visually it doesn't matter if you use-->
+							<!--						ul ( unordered list ) or ol, but semantically this is the right choice.-->
+							<ol class="keyboard">
+								<li class="key-row">
+									<ol class="key-list">
+										<li><button id='q' onclick="window.type('q')">Q</button></li>
+										<li><button id='w' onclick="window.type('w')">W</button></li>
+										<li><button id='e' onclick="window.type('e')">E</button></li>
+										<li><button id='r' onclick="window.type('r')">R</button></li>
+										<li><button id='t' onclick="window.type('t')">T</button></li>
+										<li><button id='y' onclick="window.type('y')">Y</button></li>
+										<li><button id='u' onclick="window.type('u')">U</button></li>
+										<li><button id='i' onclick="window.type('i')">I</button></li>
+										<li><button id='o' onclick="window.type('o')">O</button></li>
+										<li><button id='p' onclick="window.type('p')">P</button></li>
+									</ol>
+								</li>
+
+								<li class="key-row">
+									<ol class="key-list">
+										<li><button id='a' onclick="window.type('a')">A</button></li>
+										<li><button id='s' onclick="window.type('s')">S</button></li>
+										<li><button id='d' onclick="window.type('d')">D</button></li>
+										<li><button id='f' onclick="window.type('f')">F</button></li>
+										<li><button id='g' onclick="window.type('g')">G</button></li>
+										<li><button id='h' onclick="window.type('h')">H</button></li>
+										<li><button id='j' onclick="window.type('j')">J</button></li>
+										<li><button id='k' onclick="window.type('k')">K</button></li>
+										<li><button id='l' onclick="window.type('l')">L</button></li>
+									</ol>
+								</li>
+
+								<li class="key-row">
+									<ol class="key-list">
+										<!--									DN: this is a backspace, not an enter button-->
+										<!--									<li><button class="enter" onclick="back()"id="back"><-</button></li>-->
+										<li><button class="backspace" onclick="back()" id="back"><-</button></li>
+										<li><button id='z' onclick="window.type('z')">Z</button></li>
+										<li><button id='x' onclick="window.type('x')">X</button></li>
+										<li><button id='c' onclick="window.type('c')">C</button></li>
+										<li><button id='v' onclick="window.type('v')">V</button></li>
+										<li><button id='b' onclick="window.type('b')">B</button></li>
+										<li><button id='n' onclick="window.type('n')">N</button></li>
+										<li><button id='m' onclick="window.type('m')">M</button></li>
+										<li><button class="enter" onclick="enter(word)"><img src="assets/enter.svg" width="20vw"></button></li>
+									</ol>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="grid">
+					<div class="column">
+						<div class="content">
+<!--							<button class='new-game'-->
+<!--							DN: since this button is one of a kind, let's turn it into an id instead and suffix it with -btn-->
+							<button id="new-game-btn"
+									type="button"
+									onClick="newGame()">New Game</button>
+						</div>
+						<div class="content">
+<!--							DN: for reference, your old template:-->
+<!--							<p id="prog" class="prog">-->
+<!--								Games played: <span id="games"> </span> <br>-->
+<!--								Total solves: <span id="total"> </span> <br>-->
+<!--								Incomplete solves: <span id="not"> </span> <br>-->
+<!--								Solves in 1 try: <span id="1"> </span> <br>-->
+<!--								Solves in 2 tries: <span id="2"> </span> <br>-->
+<!--								Solves in 3 tries: <span id="3"> </span> <br>-->
+<!--								Solves in 4 tries: <span id="4"> </span> <br>-->
+<!--								Solves in 5 tries: <span id="5"> </span> <br>-->
+<!--								Solves in 6 tries: <span id="6"> </span> <br>-->
+<!--								Solves in 7 tries: <span id="7"> </span> <br>-->
+<!--								Solves in 8 tries: <span id="8"> </span>-->
+<!--							</p>-->
+
+<!--							DN: this is also a list, let's say they are game-stats:-->
+							<ul class="game-stats">
+								<li>Games played: <span id="games-played"></span></li>
+								<li>Total solves: <span id="total-solves"></span></li>
+								<li>Incomplete solves: <span id="incomplete-solves"></span></li>
+								<li>Solves in 1 try: <span id="1-attempt"></span></li>
+								<li>Solves in 2 tries: <span id="2-attempts"></span></li>
+								<li>Solves in 3 tries: <span id="3-attempts"></span></li>
+								<li>Solves in 4 tries: <span id="4-attempts"></span></li>
+								<li>Solves in 5 tries: <span id="5-attempts"></span></li>
+								<li>Solves in 6 tries: <span id="6-attempts"></span></li>
+								<li>Solves in 7 tries: <span id="7-attempts"></span></li>
+								<li>Solves in 8 tries: <span id="8-attempts"></span></li>
+							</ul>
+
+<!--							I also changed your ID names to be more descriptive. When coming up with classnames, id's etc,-->
+<!--							always keep in mind that you write code for *people* ( maybe your dev colleagues who will take -->
+<!--							over your project ). Assume they know nothing and they read your code as if it's English. This-->
+<!--							applies to *all* of programming. A final note: naming things appropriately is hard, don't feel-->
+<!--							bad if you can't come up with something good and people don't understand it. It takes years and-->
+<!--							experience to get good at it and even then some devs never really do it right and it is a debate-->
+<!--							that never really ends anyway :)-->
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+<!--	if you would have a footer, it would go here:-->
+<!--	<footer></footer>-->
 	</body>
 </html>

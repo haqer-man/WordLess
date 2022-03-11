@@ -1,0 +1,33 @@
+.keyboard {
+    position: fixed;
+}
+
+.key-row {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.key-list li button {
+    /*DN: it makes more sense to use rem here,
+    rather than view height and view width*/
+    /*width: 5vw;*/
+    /*height: 8vh;*/
+    width: 1.5rem;
+    height: 2rem;
+
+    /*border-radius: 1vh;*/
+    border-radius: 15%;
+
+    /*font-size: 120%;*/
+    /* DN: we use the base font size ( 1 rem which is 18px for mobile screens, and 16 for bigger screens )*/
+    font-size: 1.2rem;
+
+    opacity: 0.8;
+    color: var(--primary-color);
+    background-color: var(--tertiary-color);
+}
+
+.key:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}

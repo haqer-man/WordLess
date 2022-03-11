@@ -1,0 +1,38 @@
+.playspace {
+    color: var(--primary-color);
+}
+
+/*DN: center the table like this:*/
+table {
+    margin: 0 auto;
+    border-spacing: 6px;
+}
+
+th > button {
+    height: 4rem;
+    width: 4rem;
+    /*DN: max sizes are smaller than min sizes? :)*/
+    /*max-width: 5vh;*/
+    /*max-height: 5vh;*/
+    /*min-width: 7vh;*/
+    /*min-height: 7vh;*/
+
+    border: 0.25vh solid #4f4f52;
+    font-size: 5vh;
+    background-color: #3a3a3b;
+    /*position: static;*/
+    /*color: white;*/
+
+    /*DN: you should not have margin and then margin-left / right etc. Either use*/
+    /*shorthand: margin t r b l or each side specifically like margin-top, margin-right,*/
+    /*margin-bottom, margin-left*/
+    /*margin: 0.6vh;*/
+    /*margin-left: auto;*/
+    /*margin-bottom: auto;*/
+    text-transform: capitalize;
+    /*display: block;*/
+}
+
+.selected-row {
+    background-color: var(--quinary-color);
+}

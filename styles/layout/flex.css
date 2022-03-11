@@ -1,0 +1,17 @@
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-col-reverse-mobile {
+    flex-direction: column-reverse;
+}
+
+@media only screen and ( min-width: 1024px ){
+    .flex-col-reverse-mobile {
+        flex-direction: row;
+    }
+}

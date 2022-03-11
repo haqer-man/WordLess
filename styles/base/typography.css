@@ -1,0 +1,29 @@
+body {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    /*DN: since all your text is centered, let's just put that on the body tag once so*/
+    /*it applies to all text :) That was you don't have to set that for every new CSS
+    block with text in it*/
+}
+
+/*DN: we don't want to break off words halfway when there is no space, so
+we use word-break: break-word: if there is not enough space, then put the whole
+word on the next line instead. This is better for your user experience and looks
+neater too*/
+p, h1, h2 {
+    word-break: break-word;
+}
+
+@media only screen and (min-width: 768px){
+    body {
+        font-size: 16px;
+    }
+}
+
+/*DN: instead of using the <b> tag, which is kind of deprecated, we make a CSS class called*/
+/*bold*/
+.bold {
+    font-weight: bold;
+}

@@ -1,0 +1,12 @@
+/*@start content*/
+.content {
+    padding: 1rem 1.25rem;
+    word-break: break-all;
+}
+
+@media only screen and (min-width: 768px) {
+    .content {
+        padding: .5rem 1.5rem;
+    }
+}
+/*@end content*/
