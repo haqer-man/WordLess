@@ -8,6 +8,20 @@ body {
     block with text in it*/
 }
 
+h1, h2 {
+    font-weight: normal;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
 /*DN: we don't want to break off words halfway when there is no space, so
 we use word-break: break-word: if there is not enough space, then put the whole
 word on the next line instead. This is better for your user experience and looks

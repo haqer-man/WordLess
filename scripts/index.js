@@ -22,31 +22,31 @@ function* allKeys() { // each time function is called, returns next value from l
 }
 
 function nextLetter() {
-	var currLtr = document.getElementsByClassName('box selected-row selected').item(0).id;
+	var currLtr = document.getElementsByClassName('selected-row selected').item(0).id;
 
 	if (Number(currLtr.split('')[1]) < 4) { // if not already at end of row, moves one square to the rights
-		document.getElementById(`${currLtr.split('')[0]}${Number(currLtr.split('')[1])+1}`).className = 'box selected-row selected';
-		document.getElementById(currLtr).className = 'box selected-row';
+		document.getElementById(`${currLtr.split('')[0]}${Number(currLtr.split('')[1])+1}`).className = 'selected-row selected';
+		document.getElementById(currLtr).className = 'selected-row';
 	}
 }
 
 function checkLetters(word,guess) {
 	if (!words.includes(guess.toLowerCase())) { // if guess is not a word (in wordlist), play 'not a word' animation
-		var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
+		var selected = document.getElementsByClassName('selected-row selected').item(0).id;
 		for (let i = 3; i >= 0; i--) {
-			document.getElementsByClassName('box selected-row').item(i).className = 'box selected-row blink';
+			document.getElementsByClassName('selected-row').item(i).className = 'selected-row blink';
 		}
-		document.getElementById(selected).className = 'box selected-row selected blink'; // 'blink' is animation styling classname for 'not a word' cases
+		document.getElementById(selected).className = 'selected-row selected blink'; // 'blink' is animation styling classname for 'not a word' cases
 		setTimeout(function () {
-			var selected = document.getElementsByClassName('box selected-row selected').item(0).id;
+			var selected = document.getElementsByClassName('selected-row selected').item(0).id;
 			for (let i = 3; i >= 0; i--) {
-				document.getElementsByClassName('box selected-row').item(i).className = 'box selected-row';
+				document.getElementsByClassName('selected-row').item(i).className = 'selected-row';
 			}
-			document.getElementById(selected).className = 'box selected-row selected';
+			document.getElementById(selected).className = 'selected-row selected';
 		}, 1000);
 		return null;
 	}
-	var currRow = document.getElementsByClassName('box selected-row').item(0).id.split('')[0];
+	var currRow = document.getElementsByClassName('selected-row').item(0).id.split('')[0];
 	if (guess.toLowerCase() === word) {
 		// confetti settings from canvas-confetti npm-js page
 		confetti({ // if guess is correct, play confetti animation
@@ -66,8 +66,8 @@ function checkLetters(word,guess) {
 		localStorage.setItem(`solved_in_${tries}`, localStorage.getItem(`solved_in_${tries}`) ? Number(localStorage.getItem(`solved_in_${tries}`))+1 : '1'); // add one to the value of 'solved_in_<tries>' in local storage if it already exists, otherwise, set it to 1
 		Number(tries) === 1 ? document.getElementById('output').innerHTML = `Congratulations! You got it in 1 try! Click the <b>"New Game"</b> button to play again!` : document.getElementById('output').innerHTML = `Congratulations! You got it in ${tries} tries! Click the <b>"New Game"</b> button to play again!`; // if solved in single try, use singular form of 'try' in output message, otherwise, use plural form ('tries')
 		for (let i = 3; i >= 0; i--) {
-			document.getElementsByClassName('box selected-row').item(i).className = 'box green-letter'; // set all letters in row green
-			document.getElementById(guess[i]).className = 'key green-letter'; // set all keys for correct letters green
+			document.getElementsByClassName('selected-row').item(i).className = 'green-bg'; // set all letters in row green
+			document.getElementById(guess[i]).className = 'green-bg'; // set all keys for correct letters green
 		}
 		showProgress();
 		window.scrollTo(0,document.body.scrollHeight); // scroll to bottom of page/document
@@ -75,14 +75,14 @@ function checkLetters(word,guess) {
 		document.getElementById('output').innerHTML = `Sorry! The word was <b>${word}</b>. Press the <b>"New Game"</b> button to play again!`;
 		for (let i = 3; i >= 0; i--) {
 			if (guess[i] === word[i]) {
-				document.getElementById(`h${i+1}`).className = 'box green-letter'; // if letter is correct, make it green
-				document.getElementById(guess[i]).className = 'key green-letter'; // also make corresponding key on virtual keyboard green
+				document.getElementById(`h${i+1}`).className = 'green-bg'; // if letter is correct, make it green
+				document.getElementById(guess[i]).className = 'green-bg'; // also make corresponding key on virtual keyboard green
 			} else if (word.includes(guess[i])) {
-				document.getElementById(`h${i+1}`).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
-				document.getElementById(guess[i]).className = 'key yellow-letter'; // also make corresponding key on virtual keyboard yellow
+				document.getElementById(`h${i+1}`).className = 'yellow-bg'; // if letter is in wrong position, make it yellow
+				document.getElementById(guess[i]).className = 'yellow-bg'; // also make corresponding key on virtual keyboard yellow
 			} else {
-				document.getElementById(`h${i+1}`).className = 'box red-letter'; // if letter is not part of target word, make it red
-				document.getElementById(guess[i]).className = 'key red-letter'; // also make corresponding key on virtual keyboard red
+				document.getElementById(`h${i+1}`).className = 'red-bg'; // if letter is not part of target word, make it red
+				document.getElementById(guess[i]).className = 'red-bg'; // also make corresponding key on virtual keyboard red
 			}
 		}
 		localStorage.not_solved = localStorage.not_solved ? Number(localStorage.getItem('not_solved'))+1 : '1'; // add one to value of 'not_solved' in local storage if it already exists, otherwise, set it to 1
@@ -92,21 +92,21 @@ function checkLetters(word,guess) {
 		var curr = document.getElementsByClassName('selected-row');
 		for (let i = 3; i >= 0; i--) {
 			if (guess[i] === word[i]) {
-				curr.item(i).className = 'box green-letter'; // if letter is correct, make it green
-				document.getElementById(guess[i]).className = 'key green-letter'; // also make corresponding key on virtual keyboard green
+				curr.item(i).className = 'green-bg'; // if letter is correct, make it green
+				document.getElementById(guess[i]).className = 'key green-bg'; // also make corresponding key on virtual keyboard green
 			} else if (word.includes(guess[i])) {
-				curr.item(i).className = 'box yellow-letter'; // if letter is in wrong position, make it yellow
-				document.getElementById(guess[i]).className = 'key yellow-letter'; // also make corresponding key on virtual keyboard yellow
+				curr.item(i).className = 'yellow-bg'; // if letter is in wrong position, make it yellow
+				document.getElementById(guess[i]).className = 'key yellow-bg'; // also make corresponding key on virtual keyboard yellow
 			} else {
-				curr.item(i).className = 'box red-letter'; // if letter is not part of target word, make it red
-				document.getElementById(guess[i]).className = 'key red-letter'; // also make corresponding key on virtual keyboard red
+				curr.item(i).className = 'red-bg'; // if letter is not part of target word, make it red
+				document.getElementById(guess[i]).className = 'key red-bg'; // also make corresponding key on virtual keyboard red
 			}
 		}
-		
+
 		var next = window.newRow.next().value; // <next> is the next value of newRow function
-		document.getElementById(next + 1).className = 'box selected-row selected'; // select first box of next row 
+		document.getElementById(next + 1).className = 'selected-row selected'; // select first box of next row
 		for (let i = 2; i <= 4; i++) {
-			document.getElementById(`${next}${i}`).className = 'box selected-row'; // move to next row
+			document.getElementById(`${next}${i}`).className = 'selected-row'; // move to next row
 		}
 		if (['a','b','c','d','e','f','g','j'].indexOf(curr.item(0).id[0]) > 3) {
 			window.scrollBy(0,1.25 * document.getElementById('a1').scrollHeight);
@@ -115,7 +115,7 @@ function checkLetters(word,guess) {
 }
 
 function type(ltr) {
-	var currLtr = document.getElementsByClassName('box selected-row selected').item(0);
+	var currLtr = document.getElementsByClassName('selected-row selected').item(0);
 	if (currLtr === null) {
 		return null; // if no square selected, do nothing
 	} else {
@@ -127,14 +127,14 @@ function type(ltr) {
 }
 
 function back() {
-	var currLtr = document.getElementsByClassName('box selected-row selected').item(0);
+	var currLtr = document.getElementsByClassName('selected-row selected').item(0);
 
 	if (Number(currLtr.id.split('')[1]) > 1) { // if not already at farthest box to the left, clear current box and move one space to the left
 		if (currLtr.innerHTML) {
 			currLtr.innerHTML = '';
 		} else {
-			currLtr.className = 'box selected-row';
-			document.getElementById(currLtr.id.split('')[0] + (Number(currLtr.id.split('')[1]) - 1)).className = 'box selected-row selected';
+			currLtr.className = 'selected-row';
+			document.getElementById(currLtr.id.split('')[0] + (Number(currLtr.id.split('')[1]) - 1)).className = 'selected-row selected';
 			document.getElementById(currLtr.id.split('')[0] + (Number(currLtr.id.split('')[1]) - 1)).innerHTML = '';
 		}
 	} else {
@@ -143,7 +143,7 @@ function back() {
 }
 
 function enter(word){
-	var currLtr = document.getElementsByClassName('box selected-row selected').item(0); // first result of all elements with classname 'box selected-row selected' (returns <list>)
+	var currLtr = document.getElementsByClassName('selected-row selected').item(0); // first result of all elements with classname 'box selected-row selected' (returns <list>)
 	if (currLtr !== null) { // if a box is selected
 		var currRow = currLtr.id.split('')[0];
 		if (document.getElementById(`${currRow}1`).innerHTML && document.getElementById(`${currRow}2`).innerHTML && document.getElementById(`${currRow}3`).innerHTML && document.getElementById(`${currRow}4`).innerHTML) { // if all boxes in row filled
@@ -162,16 +162,16 @@ function clearScreen() {
 	const clearKeys = allKeys(); // initialize generator allKeys() as clearKeys
 	var b = clearBoxes.next().value; // set b to the next value of clearBoxes
 	document.getElementById(b).innerHTML = '';
-	document.getElementById(b).className = 'box selected-row selected';
+	document.getElementById(b).className = 'selected-row selected';
 	for (let i = 1; i < 4; i++) {
 		b = clearBoxes.next().value; // set b to the next value of clearBoxes
 		document.getElementById(b).innerHTML = '';
-		document.getElementById(b).className = 'box selected-row';
+		document.getElementById(b).className = 'selected-row';
 	}
 	for (let i = 4; i < 32; i++) {
 		b = clearBoxes.next().value; // set b to the next value of clearBoxes
 		document.getElementById(b).innerHTML = '';
-		document.getElementById(b).className = "box";
+		document.getElementById(b).className = "";
 	}
 	for (let i = 0; i < 26; i++) {
 		document.getElementById(clearKeys.next().value).className = 'key'; // Set the classname of the document with an id of the next value of the clearKeys function to 'keyboard'
@@ -180,12 +180,12 @@ function clearScreen() {
 }
 
 function showProgress() {
-	document.getElementById('total').innerHTML = localStorage.getItem('solved') ? localStorage.solved : '0'; // if 'solved' exists in local storage, display it, otherwise, display 0
+	document.getElementById('total-solves').innerHTML = localStorage.getItem('solved') ? localStorage.solved : '0'; // if 'solved' exists in local storage, display it, otherwise, display 0
 	for (let i = 1; i < 9; i++) {
 		document.getElementById(''+i).innerHTML = localStorage.getItem(`solved_in_${i}`) ? localStorage.getItem(`solved_in_${i}`) : '0'; // if 'solved_in_<i>' exists in local storage, display it in the corresponding row of player stats
 	}
-	document.getElementById('not').innerHTML = localStorage.getItem('not_solved') ? localStorage.not_solved : '0'; // if 'not_solved' exists in local storage, display it, otherwise, display 0
-	document.getElementById('games').innerHTML = localStorage.getItem('games_played') ? localStorage.games_played : '0'; // if 'game' exists in local storage (used to store number of games played), display it, otherwise, display 0
+	document.getElementById('incomplete-solves').innerHTML = localStorage.getItem('not_solved') ? localStorage.not_solved : '0'; // if 'not_solved' exists in local storage, display it, otherwise, display 0
+	document.getElementById('games-played').innerHTML = localStorage.getItem('games_played') ? localStorage.games_played : '0'; // if 'game' exists in local storage (used to store number of games played), display it, otherwise, display 0
 }
 
 function newGame() {
@@ -194,14 +194,14 @@ function newGame() {
 	clearScreen();
 	window.newRow = rowNums('b');
 	window.word = words[Math.floor(Math.random() * words.length)]; // Select a random word from wordlist as target word
-	
+
 	// Event listeners based on https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 	window.addEventListener('keydown', function(event) {
 		if (event.defaultPrevented) {
 		return; // Do nothing if event already handled
 		}
-		var curr = document.getElementsByClassName('box selected-row selected').item(0);
-		
+		var curr = document.getElementsByClassName('selected-row selected').item(0);
+
 		switch(event.keyCode) { // equivalent of "if (event.keyCode === <case 1>) { do something } else if (event.keyCode === <case 2>) { do something } else if (event.keyCode === <case 3>) { do something } else if..."
 			case 65:
 				type('a');
@@ -290,14 +290,14 @@ function newGame() {
 				break;
 			case 37:
 				if (Number(curr.id.split('')[1]) > 1) { // if not already at farthest left space in row, move left one space
-					curr.className = 'box selected-row';
-					document.getElementById(curr.id.split('')[0] + (Number(curr.id.split('')[1]) - 1)).className = 'box selected-row selected';
+					curr.className = 'selected-row';
+					document.getElementById(curr.id.split('')[0] + (Number(curr.id.split('')[1]) - 1)).className = 'selected-row selected';
 				}
 				break; // break out of event listener so no other event cases run
 			case 39:
 				if (Number(curr.id.split('')[1]) < 4) { // if not already at farthest right space in row, move right one space
-					curr.className = 'box selected-row';
-					document.getElementById(curr.id.split('')[0] + (Number(curr.id.split('')[1]) + 1)).className = 'box selected-row selected';
+					curr.className = 'selected-row';
+					document.getElementById(curr.id.split('')[0] + (Number(curr.id.split('')[1]) + 1)).className = 'selected-row selected';
 				}
 				break; // break out of event listener so no other event cases run
 		}
@@ -308,9 +308,3 @@ function newGame() {
 
 
 newGame();
-
-
-// Future Updates:
-// fix centering issue
-// add mobile compatibility
-// 

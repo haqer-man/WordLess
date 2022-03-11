@@ -67,7 +67,7 @@
 <!--								to specify that is has 'information'. If you need to select this element specifically,-->
 <!--								because you have multiple dropdowns on a page for example, I'd give it an ID instead and-->
 <!--								use that to select it-->
-								<p class="bold show-rules">Hover for instructions</p>
+								<p class="bold dropdown-toggle">Hover for instructions</p>
 <!--								DN: renamed 'rules' to show-rules: because that's what this class does. It shows rules-->
 <!--								on hover. It also probably shouldn't really be a p semantically, but let's leave it for now-->
 
@@ -256,34 +256,19 @@
 									onClick="newGame()">New Game</button>
 						</div>
 						<div class="content">
-<!--							DN: for reference, your old template:-->
-<!--							<p id="prog" class="prog">-->
-<!--								Games played: <span id="games"> </span> <br>-->
-<!--								Total solves: <span id="total"> </span> <br>-->
-<!--								Incomplete solves: <span id="not"> </span> <br>-->
-<!--								Solves in 1 try: <span id="1"> </span> <br>-->
-<!--								Solves in 2 tries: <span id="2"> </span> <br>-->
-<!--								Solves in 3 tries: <span id="3"> </span> <br>-->
-<!--								Solves in 4 tries: <span id="4"> </span> <br>-->
-<!--								Solves in 5 tries: <span id="5"> </span> <br>-->
-<!--								Solves in 6 tries: <span id="6"> </span> <br>-->
-<!--								Solves in 7 tries: <span id="7"> </span> <br>-->
-<!--								Solves in 8 tries: <span id="8"> </span>-->
-<!--							</p>-->
-
 <!--							DN: this is also a list, let's say they are game-stats:-->
 							<ul class="game-stats">
 								<li>Games played: <span id="games-played"></span></li>
 								<li>Total solves: <span id="total-solves"></span></li>
 								<li>Incomplete solves: <span id="incomplete-solves"></span></li>
-								<li>Solves in 1 try: <span id="1-attempt"></span></li>
-								<li>Solves in 2 tries: <span id="2-attempts"></span></li>
-								<li>Solves in 3 tries: <span id="3-attempts"></span></li>
-								<li>Solves in 4 tries: <span id="4-attempts"></span></li>
-								<li>Solves in 5 tries: <span id="5-attempts"></span></li>
-								<li>Solves in 6 tries: <span id="6-attempts"></span></li>
-								<li>Solves in 7 tries: <span id="7-attempts"></span></li>
-								<li>Solves in 8 tries: <span id="8-attempts"></span></li>
+								<li>Solves in 1 try: <span id="1"></span></li>
+								<li>Solves in 2 tries: <span id="2"></span></li>
+								<li>Solves in 3 tries: <span id="3"></span></li>
+								<li>Solves in 4 tries: <span id="4"></span></li>
+								<li>Solves in 5 tries: <span id="5"></span></li>
+								<li>Solves in 6 tries: <span id="6"></span></li>
+								<li>Solves in 7 tries: <span id="7"></span></li>
+								<li>Solves in 8 tries: <span id="8"></span></li>
 							</ul>
 
 <!--							I also changed your ID names to be more descriptive. When coming up with classnames, id's etc,-->
