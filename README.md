@@ -8,10 +8,6 @@
 
 #
 
-#### Find me on Discord @***Lunatic***#**3621**
-
->I'm also looking for software development and/or wep development job (or volunteering) opportunities, so if you need a website built or any other development done, let me know on Discord!
-
-### Coming soon:
+### Coming eventually maybe:
 * Mobile compatibility
 * Personalization (If that turns out to be something people want)
