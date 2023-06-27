@@ -5,18 +5,18 @@ function handleKeyDown(event) {
 	}
 
 	if ( ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'].includes(event.key.toLowerCase()) ) {
-		window.game.screen.board.type(event.key); // if user typed a letter, pass the letter to the game.
+		game.screen.board.type(event.key); // if user typed a letter, pass the letter to the game.
 	} else if ( ['Backspace','ArrowDown','Enter','ArrowLeft','ArrowRight'].includes(event.code) ) {
 		switch(event.code) {  // equivalent of "if (event.key === <case 1>) { do something } else if (event.key === <case 2>) { do something } else if (event.key === <case 3>) { do something } else if..."
 			case 'Backspace':
-				window.game.backspace(); break;
+				game.backspace(); break;
 			case "ArrowDown":
 			case "Enter":
-				window.game.enter(); break;
+				game.enter(); break;
 			case "ArrowLeft":
-				window.game.screen.board.moveLeft(); break;
+				game.screen.board.moveLeft(); break;
 			case "ArrowRight":
-				window.game.screen.board.moveRight(); break; // break out of event listener so no other event cases run
+				game.screen.board.moveRight(); break; // break out of event listener so no other event cases run
 		}
 		event.preventDefault(); // prevent default key functions from running
 	}
@@ -454,7 +454,7 @@ class Game {
 
 	newGame() {
 		window.scrollTo(0,0); // Scroll to top of window
-		window.game = new Game; // initialize the Game class
+		game = new Game; // initialize the Game class
 		this.screen.clear();
 
 		// Event liosteners based on https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/
@@ -462,7 +462,7 @@ class Game {
 	}
 }
 
-window.game = new Game();
+game = new Game();
 game.newGame();
 game.screen.showProgress();
 
