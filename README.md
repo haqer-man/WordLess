@@ -5,6 +5,8 @@
 ***
 
 ### Note: Does not work on mobile ~~yet~~
+### Also, the code in the main repository does not work, but the game works from the GitHub Pages link [here](https://haqer-man.github.io/WordLess/)!
+#### If it isn't working, please contact me!
 
 #
 
