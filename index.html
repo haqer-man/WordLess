@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- Inspiration taken from https://github.com/ocrebb776/wordle-recreate -->
+<!-- Some HTML formatting inspired by https://github.com/ocrebb776/wordle-recreate -->
 
 <html>
 	<head>
@@ -8,17 +8,20 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Wordless</title>
 		<link href="style.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 	</head>
 	<body>
 		<div class="heading-center">
-			Word<b>less</b>
+			<span>Word<b>less</b></span>
 		</div>
 		<div class="subheading">
-			Guess the 4-letter word in 8 attempts or less!<br>
-			<b>Type a 4-letter word, then hit enter to begin!</b><br>
-			<span class="green">Green</span> - Letter is part of target word and is in the correct position.<br>
-			<span class="yellow">Yellow</span> - Letter part of target word, but in wrong position.<br>
-			<span class="red">Red</span> - Letter not part of target word.
+			<p><b>Type a 4-letter word, then hit enter to begin!</b></p>
+			<div class="info-dropdown">
+				<span class="rules"><b>Hover for instructions</b></span>
+				<div class="info-content">
+					<p>Guess the English word in 8 attempts or less!<br><b>Type a 4-letter word, then hit enter to begin!</b><br><span class="green">Green</span> - Letter is part of target word and in correct position.<br><span class="yellow">Yellow</span> - Letter is part of target word, but in wrong position.<br><span class="red">Red</span> - Letter is not part of target word.</p>
+				</div>
+			</div>
 		</div>
 		<div class="playspace-table-center">
 			<b>
@@ -76,12 +79,57 @@
 		</div>
 		<br>
 		<div class="output">
-			<p id="output"> </p>
+			<p id="output"></p>
 		</div>
-		<div class="new-game">
-			<button onClick="newGame()">New Game</button>
+		
+		<div class="keyboard">
+			<button class="key" id='q' onclick="window.game.screen.board.type('q')">Q</button>
+			<button class="key" id='w' onclick="window.game.screen.board.type('w')">W</button>
+			<button class="key" id='e' onclick="window.game.screen.board.type('e')">E</button>
+			<button class="key" id='r' onclick="window.game.screen.board.type('r')">R</button>
+			<button class="key" id='t' onclick="window.game.screen.board.type('t')">T</button>
+			<button class="key" id='y' onclick="window.game.screen.board.type('y')">Y</button>
+			<button class="key" id='u' onclick="window.game.screen.board.type('u')">U</button>
+			<button class="key" id='i' onclick="window.game.screen.board.type('i')">I</button>
+			<button class="key" id='o' onclick="window.game.screen.board.type('o')">O</button>
+			<button class="key" id='p' onclick="window.game.screen.board.type('p')">P</button><BR>
+			
+			<button class="key" id='a' onclick="window.game.screen.board.type('a')">A</button>
+			<button class="key" id='s' onclick="window.game.screen.board.type('s')">S</button>
+			<button class="key" id='d' onclick="window.game.screen.board.type('d')">D</button>
+			<button class="key" id='f' onclick="window.game.screen.board.type('f')">F</button>
+			<button class="key" id='g' onclick="window.game.screen.board.type('g')">G</button>
+			<button class="key" id='h' onclick="window.game.screen.board.type('h')">H</button>
+			<button class="key" id='j' onclick="window.game.screen.board.type('j')">J</button>
+			<button class="key" id='k' onclick="window.game.screen.board.type('k')">K</button>
+			<button class="key" id='l' onclick="window.game.screen.board.type('l')">L</button><br>
+			
+			<button class="key enter"  onclick="window.game.backspace()"id="back"><-</button>
+			<button class="key" id='z' onclick="window.game.screen.board.type('z')">Z</button>
+			<button class="key" id='x' onclick="window.game.screen.board.type('x')">X</button>
+			<button class="key" id='c' onclick="window.game.screen.board.type('c')">C</button>
+			<button class="key" id='v' onclick="window.game.screen.board.type('v')">V</button>
+			<button class="key" id='b' onclick="window.game.screen.board.type('b')">B</button>
+			<button class="key" id='n' onclick="window.game.screen.board.type('n')">N</button>
+			<button class="key" id='m' onclick="window.game.screen.board.type('m')">M</button>
+			<!-- enter.svg from https://github.com/ocrebb776/wordle-recreate/blob/main/enter.svg -->
+			<button class="key enter"  onclick="window.game.enter()"><img src="enter.svg" width="20vw"></button>
 		</div>
-		<script src="words.txt.js"></script>
-		<script src="script.js"></script>
+		<button class='new-game' onclick="window.removeEventListener('keydown', handleKeyDown, true); window.game.newGame();">New Game</button>
+		<p id="prog" class="prog">
+			Note: Stats stored in browser cache!<br>
+			Games played: <span id="games"> </span> <br>
+			Total solves: <span id="total"> </span> <br>
+			Incomplete solves: <span id="not"> </span> <br>
+			Solves in 1 try: <span id="1"> </span> <br>
+			Solves in 2 tries: <span id="2"> </span> <br>
+			Solves in 3 tries: <span id="3"> </span> <br>
+			Solves in 4 tries: <span id="4"> </span> <br>
+			Solves in 5 tries: <span id="5"> </span> <br>
+			Solves in 6 tries: <span id="6"> </span> <br>
+			Solves in 7 tries: <span id="7"> </span> <br>
+			Solves in 8 tries: <span id="8"> </span>
+		</p>
+		<script src="index.js"></script>
 	</body>
 </html>
