@@ -4,6 +4,8 @@ function handleKeyDown(event) {
 		return; // Do nothing if event already handled
 	}
 
+	console.log(event.key);
+
 	if ( ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'].includes(event.key.toLowerCase()) ) {
 		game.screen.board.type(event.key); // if user typed a letter, pass the letter to the game.
 	} else if ( ['Backspace','ArrowDown','Enter','ArrowLeft','ArrowRight'].includes(event.code) ) {
