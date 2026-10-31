@@ -234,7 +234,7 @@ class Game {
 	'mint', 'minx', 'mire', 'miss', 'mist', 'mite', 'mitt', 'moan', 'moat', 'mobs', 'mock', 'mode', 'mods', 'moho', 'mold', 'mole', 'molt', 'moms',
 	'monk', 'mood', 'moon', 'moor', 'moos', 'moot', 'mope', 'mops', 'more', 'moss', 'most', 'moth', 'move', 'mown', 'mows', 'much', 'muck', 'muff',
 	'mugs', 'mule', 'mull', 'mums', 'muon', 'murk', 'muse', 'mush', 'musk', 'must', 'mute', 'mutt', 'myna', 'myth', 'nabs', 'nags', 'nail', 'name',
-	'nand', 'nape', 'naps', 'naut', 'nave', 'navy', 'nays', 'nazi', 'neap', 'near', 'neat', 'neck', 'need', 'neon', 'nerd', 'nest', 'nets', 'nevi',
+	'nand', 'nape', 'naps', 'naut', 'nave', 'navy', 'nays', 'nazi', 'neap', 'near', 'neat', 'neck', 'need', 'neon', 'nerd', 'nerf', 'nest', 'nets', 'nevi',
 	'news', 'newt', 'next', 'nibs', 'nice', 'nick', 'nigh', 'nils', 'nine', 'nips', 'nobs', 'nock', 'node', 'nods', 'noel', 'none', 'noon', 'nope',
 	'norm', 'nose', 'nosy', 'note', 'noun', 'nova', 'nubs', 'nude', 'nuke', 'null', 'numb', 'nuns', 'nuts', 'oafs', 'oaks', 'oars', 'oath', 'oats',
 	'obey', 'oboe', 'octo', 'odds', 'odes', 'odor', 'offs', 'ogle', 'ogre', 'ohms', 'oils', 'oily', 'oink', 'okay', 'okra', 'olea', 'oleo', 'omen',
